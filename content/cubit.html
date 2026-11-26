@@ -1,0 +1,139 @@
+<!-- Cubit: real text + images, laid out with the exact Figma coordinates of frames 09–11
+     (page complete). Footer lines and page numbers are left out.
+     Each .sheet is one slide: positions are Figma px inside the 1296-wide frame; the sheet is
+     cropped to x 72–1224 and scaled to the page width (see .sheet in style.css). -->
+<div class="sheets">
+
+<!-- 09 Cubit_intro: screen layout. The picture is sized to fit the window; the facts end on its bottom edge. -->
+<section class="intro" data-toc="Overview">
+  <div class="intro-text">
+    <h1 class="intro-title">Cubit</h1>
+    <dl class="intro-facts">
+      <dt>What</dt><dd>AI-driven tangible playlist discovery</dd>
+      <dt>Date</dt><dd>February 2026</dd>
+      <dt>Context</dt><dd>Tangible User Interfaces, CIID, 2 weeks</dd>
+      <dt>Overview</dt><dd>This project explores how music apps push the playlists they want you to hear. Cubit finds the ones you want.</dd>
+      <dt>Team</dt><dd>Ella Park, Daniela Gomez, Maryam Safai Fard</dd>
+    </dl>
+  </div>
+  <figure class="intro-fig">
+    <button class="zoom" type="button" aria-label="Enlarge image"><img src="../assets/cubit/intro-art.webp" alt="Two Cubit cubes labelled Rock and Energetic, glowing purple, over a blurred grid of coloured dots"></button>
+    <figcaption>Rock + Energetic: pair two cubes, get one playlist</figcaption>
+  </figure>
+</section>
+
+<!--video:1|Demo-->
+
+<!-- 10 Cubit_overview -->
+<section class="sheet" style="--h:640" data-toc="Process">
+  <div class="sheet-in">
+    <h2 class="a h2" style="left:72px;top:73px;width:1152px">Building a tangible AI for playlist selection</h2>
+    <div class="a rule" style="left:72px;top:120px;width:1152px"></div>
+
+    <p class="a k16" style="left:72px;top:136px;width:128px">Problem</p>
+    <p class="a v18" style="left:176px;top:136px;width:398px">Music apps push their own playlists, so finding one that fits your mood is hard.</p>
+    <div class="a rule" style="left:72px;top:196px;width:502px"></div>
+    <p class="a k16" style="left:72px;top:206px;width:128px">Question</p>
+    <p class="a v18" style="left:176px;top:206px;width:398px">What if people could choose music together, instead of an app choosing for them?</p>
+    <div class="a rule" style="left:72px;top:266px;width:502px"></div>
+    <p class="a k16" style="left:72px;top:276px;width:128px">Concept</p>
+    <p class="a v18" style="left:176px;top:276px;width:398px">Pair a genre cube with a mood cube to get a Spotify playlist that matches that mix.</p>
+    <div class="a rule" style="left:72px;top:336px;width:502px"></div>
+    <p class="a k16" style="left:72px;top:346px;width:128px">My role</p>
+    <p class="a v18" style="left:176px;top:346px;width:398px">I led the look and feel and the feedback loops, and developed the AI prompt that selects a playlist for every genre and mood pair.</p>
+
+    <div class="a panel" style="left:660px;top:120px;width:564px;height:506px"></div>
+    <h3 class="a w" style="left:674px;top:143px;font-size:15px;font-weight:500">Building the cubes</h3>
+    <button class="a zoom" type="button" aria-label="Enlarge photo 1" style="left:674.00px;top:171.00px;width:178.42px;height:142.86px"><img src="../assets/cubit/build-1.webp" alt="Two wooden cubes held together, showing the magnet holes" loading="lazy" decoding="async"></button>
+    <button class="a zoom" type="button" aria-label="Enlarge photo 2" style="left:852.42px;top:171.00px;width:178.42px;height:142.86px"><img src="../assets/cubit/build-2.webp" alt="A laser-cut cube held up against a wall" loading="lazy" decoding="async"></button>
+    <button class="a zoom" type="button" aria-label="Enlarge photo 3" style="left:674.00px;top:313.86px;width:178.42px;height:142.86px"><img src="../assets/cubit/build-3.webp" alt="A cube face with a sticky note reading Folk, wired to an Arduino" loading="lazy" decoding="async"></button>
+    <button class="a zoom" type="button" aria-label="Enlarge photo 4" style="left:852.42px;top:313.86px;width:178.42px;height:142.86px"><img src="../assets/cubit/build-4.webp" alt="Laser-cut case parts and clamps on a workbench" style="object-position:33% 50%" loading="lazy" decoding="async"></button>
+    <button class="a zoom" type="button" aria-label="Enlarge photo 5" style="left:674.00px;top:456.72px;width:178.42px;height:142.86px"><img src="../assets/cubit/build-5.webp" alt="An open cube frame held in one hand" loading="lazy" decoding="async"></button>
+    <button class="a zoom" type="button" aria-label="Enlarge photo 6" style="left:852.42px;top:456.72px;width:178.42px;height:142.86px"><img src="../assets/cubit/build-6.webp" alt="LED strip wiring glowing on a breadboard" loading="lazy" decoding="async"></button>
+    <span class="a num" style="left:681.55px;top:177.61px">1</span>
+    <span class="a num" style="left:859.97px;top:177.61px">2</span>
+    <span class="a num" style="left:681.55px;top:320.46px">3</span>
+    <span class="a num" style="left:859.97px;top:320.46px">4</span>
+    <span class="a num" style="left:681.55px;top:463.33px">5</span>
+    <span class="a num" style="left:859.97px;top:463.33px">6</span>
+    <p class="a w part" style="left:1044px;top:171px">Part 1</p>
+    <p class="a w small" style="left:1044px;top:193px">Pairing cubes with magnets</p>
+    <p class="a w list" style="left:1044px;top:217px">1&nbsp;&nbsp;Magnet holes</p>
+    <p class="a w list" style="left:1044px;top:236px">2&nbsp;&nbsp;Box exterior</p>
+    <p class="a w part" style="left:1044px;top:322.33px">Part 2</p>
+    <p class="a w small" style="left:1044px;top:344.33px">Mood and genre pairs</p>
+    <p class="a w list" style="left:1044px;top:368.33px">3&nbsp;&nbsp;Sticky-note pairs</p>
+    <p class="a w list" style="left:1044px;top:387.33px">4&nbsp;&nbsp;Cutting the case parts</p>
+    <p class="a w part" style="left:1044px;top:473.67px">Part 3</p>
+    <p class="a w small" style="left:1044px;top:495.67px">Case lights one face</p>
+    <p class="a w list" style="left:1044px;top:519.67px">5&nbsp;&nbsp;Case frame</p>
+    <p class="a w list" style="left:1044px;top:538.67px">6&nbsp;&nbsp;LED wiring</p>
+
+    <p class="a v20" style="left:660px;top:656px;width:564px">One cube sets the genre and the other the mood. Snap them together, and AI finds a playlist for that pair.</p>
+  </div>
+</section>
+
+<!-- 11 Cubit_how_it_works -->
+<section class="sheet" style="--h:668" data-toc="How it works">
+  <div class="sheet-in">
+    <h2 class="a h2" style="left:72px;top:73px;width:698px">How the AI generated playlists work</h2>
+    <div class="a rule" style="left:72px;top:120px;width:1152px"></div>
+    <div class="a panel" style="left:72px;top:120px;width:1152px;height:519.5px"></div>
+    <div class="a rule rule--panel" style="left:72px;top:375px;width:1152px"></div>
+
+    <!-- row 1: selecting a playlist -->
+    <p class="a w" style="left:87px;top:137px;font-size:16px">Selecting a playlist</p>
+    <p class="a w" style="left:87px;top:202px;font-size:12px;width:50px">Genre</p>
+    <span class="a cube on" style="left:143px;top:176px">Rock</span>
+    <span class="a cube" style="left:219px;top:176px">Folk</span>
+    <span class="a cube" style="left:295px;top:176px">Salsa</span>
+    <span class="a cube" style="left:371px;top:176px">Jazz</span>
+    <p class="a w" style="left:87px;top:278px;font-size:12px;width:50px">Mood</p>
+    <span class="a cube" style="left:143px;top:252px">Nostalgic</span>
+    <span class="a cube on" style="left:219px;top:252px">Energetic</span>
+    <span class="a cube" style="left:295px;top:252px">Soulful</span>
+    <span class="a cube" style="left:371px;top:252px">Chill</span>
+    <p class="a w" style="left:87px;top:330px;font-size:12px;width:356px">Each genre and mood combination selects a new playlist</p>
+
+    <button class="a zoom round" type="button" aria-label="Enlarge step 1" style="left:475px;top:140px;width:234px;height:175px"><img src="../assets/cubit/step-1.webp" alt="Hands holding the Rock and Nostalgic cubes together" loading="lazy" decoding="async"></button>
+    <button class="a zoom round" type="button" aria-label="Enlarge step 2" style="left:725px;top:140px;width:234px;height:175px"><img src="../assets/cubit/step-2.webp" alt="Turning one cube to change its face" loading="lazy" decoding="async"></button>
+    <button class="a zoom round" type="button" aria-label="Enlarge step 3" style="left:975px;top:140px;width:234px;height:175px"><img src="../assets/cubit/step-3.webp" alt="Hands holding the Rock and Energetic cubes together" loading="lazy" decoding="async"></button>
+
+    <p class="a w step-n" style="left:475px;top:323px">1</p>
+    <span class="a pill" style="left:491px;top:320px;width:51px">Rock</span>
+    <p class="a w t13" style="left:550px;top:323.5px">and</p>
+    <span class="a pill" style="left:581px;top:320px;width:77px">Nostalgic</span>
+    <p class="a w t13" style="left:666px;top:323.5px">cubes.</p>
+    <p class="a w step" style="left:725px;top:323px;width:234px"><b>2</b>&nbsp;&nbsp;Change combination by turning either of the cubes.</p>
+    <p class="a w step-n" style="left:975px;top:323px">3</p>
+    <span class="a pill" style="left:991px;top:320px;width:51px">Rock</span>
+    <p class="a w t13" style="left:1050px;top:323.5px">and</p>
+    <span class="a pill" style="left:1081px;top:320px;width:77px">Energetic</span>
+    <p class="a w t13" style="left:1166px;top:323.5px">cubes.</p>
+
+    <!-- row 2: hearing your selection -->
+    <p class="a w" style="left:87px;top:384px;font-size:16px">Hearing your AI prompt selection</p>
+    <p class="a w" style="left:87px;top:415px;font-size:14px;line-height:18px;width:300px">The Arduino reads the pair</p>
+    <div class="a box" style="left:87px;top:461px;width:180px;height:116px"></div>
+    <div class="a box" style="left:283px;top:461px;width:176px;height:116px"></div>
+    <span class="a pill fill" style="left:92.5px;top:505px;width:53px;height:28px">Rock</span>
+    <p class="a w t13" style="left:152.5px;top:510.5px">and</p>
+    <span class="a pill fill" style="left:182.5px;top:505px;width:79px;height:28px">Energetic</span>
+    <span class="a search" style="left:296px;top:505px;width:150px;height:28px">rock to run to</span>
+    <p class="a w t13" style="left:89px;top:585px">Genre and mood pair</p>
+    <p class="a w t13" style="left:283px;top:585px">Playlist selection from AI</p>
+
+    <button class="a zoom round" type="button" aria-label="Enlarge step 4" style="left:475px;top:387px;width:234px;height:175px"><img src="../assets/cubit/step-4.webp" alt="The paired cubes lit up purple" loading="lazy" decoding="async"></button>
+    <button class="a zoom round" type="button" aria-label="Enlarge step 5" style="left:725px;top:387px;width:234px;height:175px"><img src="../assets/cubit/step-5.webp" alt="The paired cubes lit up in green and purple" loading="lazy" decoding="async"></button>
+    <button class="a zoom round" type="button" aria-label="Enlarge step 6" style="left:975px;top:387px;width:234px;height:175px"><img src="../assets/cubit/step-6.webp" alt="The two cubes pulled apart and switched off" loading="lazy" decoding="async"></button>
+
+    <p class="a w step" style="left:475px;top:570px;width:234px"><b>4</b>&nbsp;&nbsp;Connect your selection for the AI prompt to send your request</p>
+    <p class="a w step-n" style="left:725px;top:570px">5</p>
+    <span class="a search" style="left:745px;top:567px;width:200px;height:24px">rock to run to</span>
+    <p class="a w step" style="left:975px;top:570px;width:234px"><b>6</b>&nbsp;&nbsp;Turn off by separating the cubes</p>
+
+    <p class="a v20" style="left:660px;top:656px;width:564px">The first mood cube mixed actions like “sing” and “relax” with moods like “energetic”. When we tested with classmates, some didn’t understand “heartfelt”, so it became “soulful”.</p>
+  </div>
+</section>
+
+</div>

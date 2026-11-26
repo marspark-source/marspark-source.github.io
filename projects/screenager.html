@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Screenager — Ella Grace Park</title>
+<meta name="description" content="Screenager: Remix of found footage. A project by Ella Grace Park.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Screenager — Ella Grace Park">
+<meta property="og:description" content="Screenager: Remix of found footage. A project by Ella Grace Park.">
+<meta property="og:image" content="https://marspark-source.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../style.css?v=1795696006">
+</head>
+<body class="project">
+
+<svg class="fx-defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <filter id="name-boil" x="-5%" y="-20%" width="110%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1" result="n">
+      <animate attributeName="seed" values="1;7;13;21;34" dur="1.25s" calcMode="discrete" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="small-boil" x="-5%" y="-20%" width="110%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="1" seed="2" result="n">
+      <animate attributeName="seed" values="2;8;15;23" dur="1.6s" calcMode="discrete" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<header class="topbar" id="top">
+  <a class="home-link" href="../index.html" aria-label="Ella Grace Park, home"><img class="home-name" src="../assets/name.svg" alt="" width="570" height="99"></a>
+  <nav>
+    <a href="sinfonietta.html">Sinfonietta</a>
+    <a href="cubit.html">Cubit</a>
+    <a href="study-hall.html">Study Hall</a>
+    <a href="tone-notation.html">Tone Notation</a>
+    <a href="screenager.html" aria-current="page">Screenager</a>
+    <a href="../about.html">About</a>
+  </nav>
+</header>
+
+<main>
+<a class="morph-name" href="../index.html" aria-hidden="true" tabindex="-1"><img src="../assets/name.svg" alt=""></a>
+<div class="morph-line" aria-hidden="true"></div>
+<div class="case-layout">
+<nav class="toc" aria-label="Sections">
+  <a class="toc-home" href="../index.html" aria-label="Ella Grace Park, home" tabindex="-1"><img src="../assets/name.svg" alt="" width="570" height="99"></a>
+  <ol>
+    <li><a href="#part-1">Overview</a></li>
+    <li><a href="#part-2">Film</a></li>
+    <li><a href="#part-3">Scenes</a></li>
+    <li class="toc-back in"><a href="#top">Back to top</a></li>
+  </ol>
+</nav>
+<div class="case-main">
+<!-- Screenager: real text + images, laid out with the exact Figma coordinates of frames 19–20
+     (page complete). Footer lines and page numbers are left out. See content/cubit.html. -->
+<style>
+  /* intro picture is 564 x 496 in Figma (not 564 x 640) */
+  [data-project="screenager"] .intro {
+    --pic-h: min(calc(496px * var(--k, 1)),
+                 calc(100svh - 57px - clamp(16px, 3vw, 40px) - 56px * var(--k, 1)));
+    padding-bottom: calc(150px * var(--k, 1));
+  }
+  [data-project="screenager"] .intro-fig .zoom { position: relative; width: calc(var(--pic-h) * 564 / 496); }
+  /* subtitle bar over the film still (Figma: black .75, 64 px tall, 16 px white text) */
+  [data-project="screenager"] .intro-fig .subs {
+    position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--pic-h) * 64 / 496);
+    padding-top: calc(var(--pic-h) * 10 / 496); box-sizing: border-box;
+    background: rgba(0,0,0,.75); color: #fff; text-align: center; font-family: "Geist", system-ui, -apple-system, sans-serif;
+    font-size: calc(var(--pic-h) * 16 / 496); line-height: 1.4;
+  }
+  [data-project="screenager"] .intro-fig figcaption { left: 50%; transform: translateX(-50%); white-space: nowrap; }
+  /* footer caption sentence under the picture (Figma y 652) */
+  [data-project="screenager"] .intro-fig .intro-note {
+    position: absolute; top: 100%; left: 0; width: calc(564px * var(--k, 1));
+    margin: calc(84px * var(--k, 1)) 0 0; font-size: calc(20px * var(--k, 1)); line-height: 1.4;
+  }
+  @media (max-width: 760px) {
+    [data-project="screenager"] .intro { padding-bottom: 0; }
+    [data-project="screenager"] .intro-fig .zoom { width: 100%; height: auto; aspect-ratio: 564 / 496; }
+    [data-project="screenager"] .intro-fig .subs { height: 12.9%; padding-top: 2%; font-size: 3vw; }
+    [data-project="screenager"] .intro-fig figcaption { transform: none; white-space: normal; }
+    [data-project="screenager"] .intro-fig .intro-note { position: static; width: auto; margin-top: 16px; }
+  }
+</style>
+<div class="sheets" data-project="screenager">
+
+<!-- 19 Screenager_overview: screen layout. The picture is sized to fit the window; the facts end on its bottom edge. -->
+<section class="intro" id="part-1" data-toc="Overview">
+  <div class="intro-text">
+    <h1 class="intro-title">Screenager</h1>
+    <dl class="intro-facts">
+      <dt>Overview</dt><dd>Remix of found footage, 2022. Made from early internet ads, home videos and people on YouTube talking about MySpace ads.</dd>
+      <dt>Problem</dt><dd>The web that promised to help kids learn also sold girls false images of what they should look like.</dd>
+      <dt>Question</dt><dd>How does growing up online inform the way girls view their own bodies?</dd>
+      <dt>Concept</dt><dd>How a tool built to connect people became a place where girls compare themselves.</dd>
+    </dl>
+  </div>
+  <figure class="intro-fig">
+    <button class="zoom" type="button" aria-label="Enlarge film still"><img src="../assets/screenager/film-still.webp" alt="Film still: a woman with closed eyes framed inside a starfield zoom, labelled 100,000 million meters"><span class="subs" aria-hidden="true">Okay, so you want to know something that I’m really sick of?<br>All the stupid pop-ups on MySpace and Facebook.</span></button>
+    <figcaption>A MySpace user, in her own words</figcaption>
+    <p class="intro-note">Early internet ads, weight-loss pop-ups and the voices of women who lived through them show how the web taught girls to doubt their bodies.</p>
+  </figure>
+</section>
+
+  <figure class="video" id="part-2" data-toc="Film"><div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/5wQAfK8D-yY?rel=0" title="screenager video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><figcaption>Screenager (2022).</figcaption></figure>
+
+<!-- 20 Screenager_scene -->
+<section class="sheet" style="--h:703" id="part-3" data-toc="Scenes">
+  <div class="sheet-in">
+    <h2 class="a h2" style="left:72px;top:73px;width:1152px">Tracing the internet’s history to the MySpace era</h2>
+    <div class="a rule" style="left:72px;top:120px;width:1152px"></div>
+    <div class="a panel" style="left:72px;top:120px;width:1152px;height:519.5px"></div>
+
+    <p class="a w" style="left:87px;top:196.5px;width:265.5px;font-size:24px;line-height:1.3">Internet on the news</p>
+    <div class="a rule rule--panel" style="left:87px;top:239.5px;width:265.5px"></div>
+    <button class="a zoom" type="button" aria-label="Enlarge still 1" style="left:87px;top:255.5px;width:265.5px;height:198.633px"><img src="../assets/screenager/still-person.webp" alt="Aerial film still of a family on a picnic blanket, labelled 1 meter" loading="lazy" decoding="async"></button>
+    <p class="a w" style="left:87px;top:470.13px;width:265.5px;font-size:18px;line-height:1.3">“It’s getting bigger and bigger all the time.”</p>
+    <p class="a w" style="left:87px;top:524.13px;width:265.5px;font-size:16px;line-height:1.3">A news anchor</p>
+
+    <p class="a w" style="left:372.5px;top:196.5px;width:265.5px;font-size:24px;line-height:1.3">Internet for shopping</p>
+    <div class="a rule rule--panel" style="left:372.5px;top:239.5px;width:265.5px"></div>
+    <button class="a zoom" type="button" aria-label="Enlarge still 2" style="left:372.5px;top:255.5px;width:265.5px;height:198.633px"><img src="../assets/screenager/still-city.webp" alt="Film still of a man at a computer framed over an aerial city map, labelled 10,000 meters" loading="lazy" decoding="async"></button>
+    <p class="a w" style="left:372.5px;top:470.13px;width:265.5px;font-size:18px;line-height:1.3">“Instead of standing in line, I just sit here and punch one button.”</p>
+    <p class="a w" style="left:372.5px;top:547.13px;width:265.5px;font-size:16px;line-height:1.3">A man</p>
+
+    <p class="a w" style="left:658px;top:196.5px;width:265.5px;font-size:24px;line-height:1.3">Internet in the home</p>
+    <div class="a rule rule--panel" style="left:658px;top:239.5px;width:265.5px"></div>
+    <button class="a zoom" type="button" aria-label="Enlarge still 3" style="left:658px;top:255.5px;width:265.5px;height:198.633px"><img src="../assets/screenager/still-planet.webp" alt="Film still of a family around a home computer framed in a starfield, labelled 10 million meters" loading="lazy" decoding="async"></button>
+    <p class="a w" style="left:658px;top:470.13px;width:265.5px;font-size:18px;line-height:1.3">“Having the internet in our home has had a great impact on our lives.”</p>
+    <p class="a w" style="left:658px;top:547.13px;width:265.5px;font-size:16px;line-height:1.3">A family</p>
+
+    <p class="a w" style="left:944px;top:197px;width:306px;font-size:24px;line-height:1.3">Internet for reaching out</p>
+    <div class="a rule rule--panel" style="left:943.5px;top:239.5px;width:265.5px"></div>
+    <button class="a zoom" type="button" aria-label="Enlarge still 4" style="left:943.5px;top:255.5px;width:265.5px;height:198.633px"><img src="../assets/screenager/still-face.webp" alt="Close-up film still of skin on a hand, labelled 1 meter" loading="lazy" decoding="async"></button>
+    <p class="a w" style="left:943.5px;top:470.13px;width:265.5px;font-size:18px;line-height:1.3">“Is anybody else willing to help me figure out how I can take these ads off?”</p>
+    <p class="a w" style="left:943.5px;top:547.13px;width:265.5px;font-size:16px;line-height:1.3">A teenage girl</p>
+
+    <p class="a v20" style="left:660px;top:663px;width:564px">The film starts with adults selling the internet for learning and family life, that morphs into a portrait of the modern woman that weaves themes of digital body image, capitalism, and identity.</p>
+  </div>
+</section>
+
+</div>
+</div>
+</div>
+
+<nav class="pager">
+  <a href="tone-notation.html" aria-label="Previous project: Tone Notation"><span class="pg"><span class="pg-arrow">←</span> <span class="pg-name">Tone Notation</span></span></a>
+  <a class="next" href="sinfonietta.html" aria-label="Next project: Sinfonietta"><span class="pg"><span class="pg-name">Sinfonietta</span> <span class="pg-arrow">→</span></span></a>
+</nav>
+</main>
+
+<div class="lightbox" id="lb" role="dialog" aria-label="Enlarged slide"><button type="button">Close ✕</button><img alt=""></div>
+<script>
+  const lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
+  document.querySelectorAll('.slide, .zoom').forEach(b => b.addEventListener('click', () => {
+    const i = b.querySelector('img'); lbImg.src = i.src; lbImg.alt = i.alt; lb.classList.add('open');
+  }));
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  addEventListener('keydown', e => e.key === 'Escape' && lb.classList.remove('open'));
+  // Scale each slide-sheet (1152 px wide in Figma) to the page width.
+  const sheets = document.querySelectorAll('.sheet, .intro, .sheets > .video');
+  const fitSheets = () => sheets.forEach(s => s.style.setProperty('--k', s.clientWidth / 1152));
+  addEventListener('resize', fitSheets); fitSheets();
+  // Side menu: a title appears once its section has started; the current one is marked.
+  const parts = [...document.querySelectorAll('[data-toc]')];
+  const tocItems = [...document.querySelectorAll('.toc li:not(.toc-back)')];
+  const markToc = () => {
+    const line = innerHeight * 0.4;
+    let cur = -1;
+    parts.forEach((p, i) => { const on = p.getBoundingClientRect().top <= line || i === 0; tocItems[i].classList.toggle('in', on); if (on) cur = i; });
+    tocItems.forEach((li, i) => li.classList.toggle('on', i === cur));
+  };
+  const bar = document.querySelector('.topbar');
+  // 0 at the top of the page -> 1 once the top bar has scrolled away; drives the name fading into the menu.
+  const barP = () => document.documentElement.style.setProperty('--bar-p', Math.min(1, Math.max(0, scrollY / (bar.offsetHeight - 13)))   /* 13 = the menu's sticky top */);
+  // Start points of the morph: where the name and line sit in the top bar.
+  const startPts = () => {
+    const n = bar.querySelector('.home-name').getBoundingClientRect(), root = document.documentElement.style;
+    root.setProperty('--n0', (n.top + scrollY) + 'px');
+    root.setProperty('--l0', (bar.offsetHeight - 1) + 'px');
+  };
+  startPts(); addEventListener('resize', startPts);
+  addEventListener('scroll', barP, { passive: true }); addEventListener('resize', barP); barP();
+  if (tocItems.length) { addEventListener('scroll', markToc, { passive: true }); addEventListener('resize', markToc); markToc(); }
+</script>
+<script src="../menu.js?v=1795696006" defer></script>
+<script src="../phone.js?v=1795696006" defer></script>
+<script src="../dividers.js?v=1795696006" defer></script>
+</body>
+</html>
