@@ -1774,3 +1774,6 @@ template.phone-part { display: none; }
   .intro .intro-fig .zoom { position: relative; }
   .intro .intro-fig .zoom img { position: absolute; inset: 0; }
 }
+/* About letter: a finer pen line */
+.letter .hand-letter path { stroke-width: 1.15; }
+@media (max-width: 860px) { .letter .hand-letter path { stroke-width: 0.7; } }
