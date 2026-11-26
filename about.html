@@ -602,7 +602,7 @@
         const puttingOn = !state[k];
         state[k] = state[k] ? null : { ...(OUTFITS[current][k] || HOME[k]) };
         // phones: follow the item down to the mannequin
-        if (puttingOn && ph()) setTimeout(() => doll.querySelector('.form').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }), 60);
+        if (puttingOn && ph()) doll.querySelector('.form').scrollIntoView({ behavior: 'instant', block: 'center' });   // phones: jump straight to the mannequin
         if (k === 'bonnet' && !state.bonnet && state.flower && state.flower.y < 12) state.flower = { ...HOME.flower };   // flower was pinned on the bonnet
         const worn = pieces.map(p => p.dataset.piece).filter(n => state[n]).sort().join();
         const m = outfitOf(worn);
