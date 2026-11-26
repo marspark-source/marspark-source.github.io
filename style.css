@@ -1694,3 +1694,29 @@ template.phone-version { display: none; }
   .doll .stage .doll-hint { left: 0; width: 100%; top: -2px; font-size: 15px; color: var(--ink); text-align: center; }
   .doll .hint-arrow { display: inline; }
 }
+
+/* ---------- PHONE: hand-made parts — evolution photos 3 in a row, next ideas one by one ---------- */
+template.phone-part { display: none; }
+@media (max-width: 760px) {
+  .sheet.split .ev-group { background: #000; color: #fff; border-radius: 6px; padding: 16px 12px 18px; }
+  .sheet.split .ev-h { font-size: 18px; font-weight: 600; margin: 0 0 10px; }
+  .sheet.split .ev-t { font-size: 14px; line-height: 1.4; margin: 0 0 14px; }
+  .sheet.split .ev-part { font-size: 14px; margin: 12px 0 8px; } .sheet.split .ev-part b { font-weight: 600; margin-right: 4px; }
+  .sheet.split .ev-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; }
+  .sheet.split .ev-pic { display: block; width: 100%; aspect-ratio: 3 / 4; border: 0; padding: 0; background: #111; border-radius: 3px; overflow: hidden; }
+  .sheet.split .ev-pic img { width: 100%; height: 100%; object-fit: contain; }
+  .sheet.split .ev-cap { font-size: 12px; line-height: 1.3; margin-top: 5px; } .sheet.split .ev-cap b { font-weight: 600; margin-right: 2px; }
+  .sheet.split .ev-sub { font-size: 10.5px; line-height: 1.3; color: #aaa; margin-top: 2px; }
+  .sheet.split .ideas { display: flex; flex-direction: column; gap: 12px; }
+  .sheet.split .idea { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center; background: #2b2b2b; border-radius: 40px; padding: 14px 18px; }
+  .sheet.split .idea img { width: 96px; height: 110px; object-fit: contain; }
+  .sheet.split .idea h4 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+  .sheet.split .idea p { font-size: 13px; line-height: 1.4; margin: 0; }
+}
+@media (max-width: 760px) { [data-project="cubit"] .sheet.split .ev-pic { aspect-ratio: 5 / 4; } }
+/* About on phones: the letter a bit smaller so the items to pick are visible on the first screen */
+@media (max-width: 860px) {
+  .letter .hand-letter { width: min(100%, max(250px, 100svh - 380px)) !important; }
+  .letter .contact { margin-top: 6px !important; }
+  .about-intro .doll { margin-top: 10px !important; }
+}

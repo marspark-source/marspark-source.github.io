@@ -52,7 +52,7 @@
     const inner = sheet.querySelector('.sheet-in'); if (!inner) return;
     inner.style.cssText += ';position:absolute;left:0;top:0;width:1296px;height:864px;transform:none;zoom:1;margin:0';
     const o = inner.getBoundingClientRect();
-    const all = [...inner.children].map(el => ({ el, ...box(el, o) }))
+    const all = [...inner.children].filter(el => !el.hasAttribute('data-ph-skip')).map(el => ({ el, ...box(el, o) }))
       .filter(i => i.w > 0 && i.h > 0 && getComputedStyle(i.el).display !== 'none');
     const back = all.filter(i => isBack(i.el) || i.h < 3);
     // plain words outside the dark panels become real text on the phone (readable size, wrapping);
@@ -233,6 +233,18 @@
           stepGrid.style.background = '#000'; els.filter(w => w._p.card).forEach(w => stepGrid.appendChild(w)); blocks.push(stepGrid);
         }
       } else { tbox = null; blocks.push(o.el); if (o.el._hint) blocks.push(o.el._hint); }
+    });
+    // hand-made phone parts (template.phone-part) go in before the section's closing caption
+    sheet.querySelectorAll('template.phone-part').forEach(t => {
+      const frag = t.content.cloneNode(true); frag.querySelectorAll('img[loading]').forEach(i => { i.loading = 'eager'; });
+      let at = blocks.length;
+      const last = blocks[blocks.length - 1];
+      const capRow = last && last.classList.contains('ph-text') ? [...last.children].find(r => r.querySelector('.v20')) : null;
+      if (capRow) {
+        if (last.children.length > 1) { const nb = document.createElement('div'); nb.className = 'ph-text'; nb.appendChild(capRow); blocks.push(nb); }
+        at = blocks.length - 1;
+      }
+      blocks.splice(at, 0, ...frag.children);
     });
     const isDark = b => b && (b.classList.contains('dark') || b.classList.contains('in-panel') || b.classList.contains('ph-list'));
     blocks.forEach((b, i) => { if (isDark(b) && isDark(blocks[i - 1])) b.classList.add('joined'); if (isDark(b) && isDark(blocks[i + 1])) b.classList.add('joins'); });
