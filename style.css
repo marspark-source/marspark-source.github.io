@@ -1720,3 +1720,7 @@ template.phone-part { display: none; }
   .letter .contact { margin-top: 6px !important; }
   .about-intro .doll { margin-top: 10px !important; }
 }
+@media (max-width: 760px) {
+  .sheet.split { gap: 12px !important; }
+  .sheet.split .joined, .sheet.split .ph-list, .sheet.hand-made .sb-group + .sb-group { margin-top: -12px !important; }
+}
