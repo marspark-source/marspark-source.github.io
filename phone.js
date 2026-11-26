@@ -37,6 +37,18 @@
   };
 
   document.querySelectorAll('.sheet').forEach(sheet => {
+    // a hand-made phone version (in a <template class="phone-version">) replaces the slide's pieces
+    const tpl = sheet.querySelector('template.phone-version');
+    if (tpl) {
+      const inner0 = sheet.querySelector('.sheet-in'), h2 = inner0 && inner0.querySelector('.h2'), cap = inner0 && inner0.querySelector('.v20');
+      const strip = el => { const c = el.cloneNode(true); c.classList.remove('a'); c.removeAttribute('style'); c.classList.add('ph-t'); return c; };
+      const head = document.createElement('div'); head.className = 'ph-text'; if (h2) head.appendChild(strip(h2));
+      const tail = document.createElement('div'); tail.className = 'ph-text'; if (cap) tail.appendChild(strip(cap));
+      const body = tpl.content.cloneNode(true);
+      body.querySelectorAll('img[loading]').forEach(i => { i.loading = 'eager'; });
+      sheet.replaceChildren(head, ...body.children, tail); sheet.classList.add('split', 'hand-made');
+      return;
+    }
     const inner = sheet.querySelector('.sheet-in'); if (!inner) return;
     inner.style.cssText += ';position:absolute;left:0;top:0;width:1296px;height:864px;transform:none;zoom:1;margin:0';
     const o = inner.getBoundingClientRect();
