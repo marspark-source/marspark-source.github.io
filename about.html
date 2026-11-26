@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795702868">
+<link rel="stylesheet" href="style.css?v=1795703035">
 </head>
 <body>
 
@@ -294,7 +294,7 @@
 
     <figure class="doll" aria-label="Things I have made, styled on a paper-doll dress form in three outfits; click a piece to put it on or take it off">
       <div class="stage">
-        <p class="doll-hint">Click an item to put it on or take it off</p>
+        <p class="doll-hint"><span class="hint-arrow" aria-hidden="true">↓ </span>Click an item to put it on or take it off</p>
         <svg class="form" viewBox="0 0 300 520" aria-hidden="true">
           <!-- head + neck -->
           <!-- head in profile, looking left: forehead, nose, lips, chin; round back of the head for the bonnet -->
@@ -527,6 +527,11 @@
     const stage = doll.querySelector('.stage'), label = doll.querySelector('.outfit-count');
     const DOLL_W = 300 / 500 * 100;                                  // doll area = left part of the stage; the box is on its right
     const TRAY = { bonnet: [60, 73], bag: [79, 71], flower: [61, 55], cockade: [80, 42] };   // each piece's own spot in the box (left %, top %)
+    // phones: items to pick from in a row at the top, the mannequin full width underneath
+    const narrow = matchMedia('(max-width: 860px)');
+    const TOP = 24;                                                   // % of the stage used by the row of items
+    const TRAY_PH = { bonnet: [5, 9], flower: [30, 11], cockade: [54, 7], bag: [77, 9] };
+    const ph = () => narrow.matches;
     const OUTFITS = [
       // from fewest to most pieces: 1, 2, then all 4
       { name: 'Everyday',     cockade: {x:20,y:30,w:28,r:-8} },   // what the page opens with
@@ -561,13 +566,14 @@
         const k = el.dataset.piece, v = state[k];
         if (v) {
           el.classList.remove('in-tray');
-          Object.assign(el.style, { left: v.x * DOLL_W / 100 + '%', top: v.y + '%', width: v.w * DOLL_W / 100 + '%' });
+          Object.assign(el.style, ph() ? { left: v.x + '%', top: TOP + v.y * (100 - TOP) / 100 + '%', width: v.w + '%' }
+                                        : { left: v.x * DOLL_W / 100 + '%', top: v.y + '%', width: v.w * DOLL_W / 100 + '%' });
           el.style.setProperty('--r', v.r + 'deg');
           el.setAttribute('aria-pressed', 'true');
         } else {
           el.classList.add('in-tray');
-          const [tx, ty] = TRAY[k];
-          Object.assign(el.style, { left: tx + '%', top: ty + '%', width: '15%' });
+          const [tx, ty] = (ph() ? TRAY_PH : TRAY)[k];
+          Object.assign(el.style, { left: tx + '%', top: ty + '%', width: ph() ? '17%' : '15%' });
           el.style.setProperty('--r', '0deg'); slot++;
           el.setAttribute('aria-pressed', 'false');
         }
@@ -617,9 +623,11 @@
           el.removeEventListener('pointercancel', cancel); el.removeEventListener('lostpointercapture', lost);
           el.classList.remove('lift'); el.style.transition = ''; labelOf(el) && labelOf(el).classList.remove('lift');
           if (!moved) { toggle(); return; }
-          const xPct = (ev.clientX - r.left) / r.width * 100;
-          if (xPct > DOLL_W) state[k] = null;                       // dropped on the box side: take it off
-          else state[k] = { x: parseFloat(el.style.left) / DOLL_W * 100, y: parseFloat(el.style.top),
+          const xPct = (ev.clientX - r.left) / r.width * 100, yPct = (ev.clientY - r.top) / r.height * 100;
+          if (ph() ? yPct < TOP : xPct > DOLL_W) state[k] = null;    // dropped among the items: take it off
+          else state[k] = ph() ? { x: parseFloat(el.style.left), y: (parseFloat(el.style.top) - TOP) / (100 - TOP) * 100,
+                            w: (state[k] || OUTFITS[current][k] || HOME[k]).w, r: (state[k] || HOME[k]).r }
+                         : { x: parseFloat(el.style.left) / DOLL_W * 100, y: parseFloat(el.style.top),
                             w: (state[k] || OUTFITS[current][k] || HOME[k]).w, r: (state[k] || HOME[k]).r };
           render();
         };
@@ -636,6 +644,7 @@
       });
     });
     wear(0);
+    narrow.addEventListener('change', render);
     // desktop: the letter (with its icons) starts level with the outfit name and ends level with the 1 / 3 row
     const letterSvg = document.querySelector('.letter .hand-letter'), contact = document.querySelector('.letter .contact');
     function fitLetter() {
@@ -648,7 +657,7 @@
       letterSvg.parentElement.style.minHeight = d.height + 'px';   // icons sit level with the 1 / 3 row
     }
     fitLetter(); addEventListener('resize', fitLetter);
-    if (matchMedia('(hover: none)').matches) { const hint = doll.querySelector('.doll-hint'); if (hint) hint.textContent = 'Tap an item to put it on or take it off'; }
+    if (matchMedia('(hover: none)').matches) { const hint = doll.querySelector('.doll-hint'); if (hint) hint.lastChild.textContent = 'Tap an item to put it on or take it off'; }
     // the items glow softly until the first click, so visitors know they can be clicked
     doll.classList.add('untouched');
     const touched = () => doll.classList.remove('untouched');
@@ -658,8 +667,8 @@
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795702868" defer></script>
-<script src="dividers.js?v=1795702868" defer></script>
+<script src="menu.js?v=1795703035" defer></script>
+<script src="dividers.js?v=1795703035" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {

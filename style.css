@@ -1684,3 +1684,13 @@ template.phone-version { display: none; }
   .sheet.hand-made .sb-group + .sb-group { margin-top: -22px; border-top-left-radius: 0; border-top-right-radius: 0; border-top: 1px solid rgba(255,255,255,.18); }
   .sheet.hand-made .sb-group:has(+ .sb-group) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
 }
+
+/* ---------- ABOUT on phones: hint → items in a row → mannequin → outfit name ---------- */
+.doll .hint-arrow { display: none; }
+@media (max-width: 860px) {
+  .about-intro .doll { margin-top: 28px; }
+  .doll .stage { aspect-ratio: 300 / 600; }
+  .doll .form { left: 0; top: 24%; width: 100%; height: 76%; }
+  .doll .stage .doll-hint { left: 0; width: 100%; top: -2px; font-size: 15px; color: var(--ink); text-align: center; }
+  .doll .hint-arrow { display: inline; }
+}
