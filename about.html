@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795703498">
+<link rel="stylesheet" href="style.css?v=1795703706">
 </head>
 <body>
 
@@ -599,7 +599,10 @@
       // putting a piece on or taking it off restyles the doll straight away: if the pieces now worn
       // make one of the three outfits, the doll is dressed in that outfit
       const toggle = () => {
+        const puttingOn = !state[k];
         state[k] = state[k] ? null : { ...(OUTFITS[current][k] || HOME[k]) };
+        // phones: follow the item down to the mannequin
+        if (puttingOn && ph()) setTimeout(() => doll.querySelector('.form').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }), 60);
         if (k === 'bonnet' && !state.bonnet && state.flower && state.flower.y < 12) state.flower = { ...HOME.flower };   // flower was pinned on the bonnet
         const worn = pieces.map(p => p.dataset.piece).filter(n => state[n]).sort().join();
         const m = outfitOf(worn);
@@ -667,8 +670,8 @@
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795703498" defer></script>
-<script src="dividers.js?v=1795703498" defer></script>
+<script src="menu.js?v=1795703706" defer></script>
+<script src="dividers.js?v=1795703706" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {
