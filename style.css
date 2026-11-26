@@ -1582,7 +1582,7 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
 }
 
 /* ---------- ABOUT: no box; items taken off rest in the open space beside the mannequin ---------- */
-.doll .tray, .doll .tray.box { display: none !important; }
+@media (max-width: 860px) { .doll .tray, .doll .tray.box { display: none !important; } }   /* phones only: desktop keeps its box */
 /* phones: a clear gap after the letter, so the dress-up starts on its own screen */
 @media (max-width: 860px) { .about-intro .doll { margin-top: 120px; } }
 
@@ -1777,3 +1777,6 @@ template.phone-part { display: none; }
 /* About letter: a finer pen line */
 .letter .hand-letter path { stroke-width: 1.15; }
 @media (max-width: 860px) { .letter .hand-letter path { stroke-width: 0.7; } }
+
+/* desktop About: mannequin + box sit a little further right */
+@media (min-width: 861px) { .about-intro .doll { translate: 32px 0; } }
