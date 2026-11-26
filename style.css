@@ -1713,7 +1713,6 @@ template.phone-part { display: none; }
   .sheet.split .idea h4 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
   .sheet.split .idea p { font-size: 13px; line-height: 1.4; margin: 0; }
 }
-@media (max-width: 760px) { [data-project="cubit"] .sheet.split .ev-pic { aspect-ratio: 5 / 4; } }
 /* About on phones: the letter a bit smaller so the items to pick are visible on the first screen */
 @media (max-width: 860px) {
   .letter .hand-letter { width: min(100%, max(250px, 100svh - 380px)) !important; }
@@ -1734,3 +1733,4 @@ template.phone-part { display: none; }
   .intro .intro-fig .zoom img, [data-project="study-hall"] .intro .intro-fig .zoom img { width: 100%; height: 100% !important; object-fit: cover !important; object-position: center; }
 }
 @media (max-width: 760px) { [data-project="study-hall"] .intro .intro-fig .zoom { aspect-ratio: 4 / 5 !important; } }
+@media (max-width: 760px) { .sheet.split .ev-pic img { object-fit: cover !important; } }
