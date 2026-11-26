@@ -14,7 +14,7 @@
   const PAD = 12;
 
   const isBack = el => el.classList.contains('panel') || el.classList.contains('rule') || el.classList.contains('mh-frame')
-    || el.classList.contains('sh-mood');
+;
   function box(el, o) {
     let r = el.getBoundingClientRect();
     if (el.tagName.toLowerCase() === 'svg' && el.classList.contains('mh-callouts')) {
@@ -162,9 +162,21 @@
     pieces.push(...stepCards);
 
     const els = pieces.map((p, n) => {
-      const wrap = document.createElement('div'); wrap.className = 'half' + (p.wide ? ' swipe' : '');
+      const inDark = panels.some(pn => p.x0 + p.w / 2 > pn.x && p.x0 + p.w / 2 < pn.x + pn.w && p.y0 + p.h / 2 > pn.y && p.y0 + p.h / 2 < pn.y + pn.h);
+      const wrap = document.createElement('div'); wrap.className = 'half' + (p.wide ? ' swipe' : '') + (inDark || p.dark || p.card ? ' dark' : '');
       const copy = inner.cloneNode(true); copy.classList.add('half-in');
       copy.querySelectorAll('img[loading]').forEach(img => { img.loading = 'eager'; });
+      // a black panel with a title then a drawing: centre the drawing (and its labels) under the title
+      if (inDark && !p.card) {
+        const inP = items.concat(texts).filter(i => i.x + i.w / 2 > p.x0 && i.x + i.w / 2 < p.x0 + p.w && i.y + i.h / 2 > p.y0 && i.y + i.h / 2 < p.y0 + p.h);
+        const top = inP.slice().sort((a, b) => a.y - b.y)[0];
+        const rest = inP.filter(i => i !== top && i.y > top.y + top.h + 10);
+        if (top && rest.length > 3 && !top.el.querySelector('img,svg')) {
+          const l = Math.min(...rest.map(i => i.x)), r = Math.max(...rest.map(i => i.x + i.w));
+          const dx = (p.x0 + p.w / 2) - (l + r) / 2;
+          if (Math.abs(dx) > 4) { const kids = [...inner.children]; rest.forEach(i => { const c = copy.children[kids.indexOf(i.el)]; if (c) c.style.translate = dx.toFixed(1) + 'px 0'; }); }
+        }
+      }
       const suffix = '-p' + n + Math.random().toString(36).slice(2, 6);   // keep SVG ids unique per copy
       copy.querySelectorAll('[id]').forEach(el => {
         const old = el.id, neu = old + suffix; el.id = neu;
@@ -222,6 +234,8 @@
         }
       } else { tbox = null; blocks.push(o.el); if (o.el._hint) blocks.push(o.el._hint); }
     });
+    const isDark = b => b && (b.classList.contains('dark') || b.classList.contains('in-panel') || b.classList.contains('ph-list'));
+    blocks.forEach((b, i) => { if (isDark(b) && isDark(blocks[i - 1])) b.classList.add('joined'); if (isDark(b) && isDark(blocks[i + 1])) b.classList.add('joins'); });
     sheet.replaceChildren(...blocks); sheet.classList.add('split');
 
     const fit = () => els.forEach(wrap => {
