@@ -1464,3 +1464,5 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
 }
 @media (min-width: 761px) { .case-layout .sheets { overflow-x: clip; } }   /* slides' hidden right margin never makes the page scroll sideways */
 .doll .form .plate.rim { fill: none; }
+/* phones: smaller dress-up hint, sitting clear of the pieces in the box */
+@media (max-width: 860px) { .doll .stage .doll-hint { font-size: 10.5px; line-height: 1.3; top: 26%; } }
