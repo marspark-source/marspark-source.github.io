@@ -1775,7 +1775,7 @@ template.phone-part { display: none; }
   .intro .intro-fig .zoom img { position: absolute; inset: 0; }
 }
 /* About letter: a finer pen line */
-.letter .hand-letter path { stroke-width: 1.15; }
+.letter .hand-letter path { stroke-width: 1.4; }
 @media (max-width: 860px) { .letter .hand-letter path { stroke-width: 0.7; } }
 
 /* desktop About: mannequin + box sit a little further right */
