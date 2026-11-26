@@ -1449,3 +1449,18 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
 .cv-dialog .kv, .cv-dialog .small-kv, .cv-dialog .entry { grid-template-columns: 86px 1fr; }
 .cv-dialog .cv dd, .cv-dialog .cv li, .cv-dialog .entry .what p { text-wrap: balance; }
 .cv-dialog .entry .what { text-wrap: balance; }
+
+/* ---------- PROJECT PAGES fit the window: no section is taller than the screen ----------
+   The tallest slide is 1152 x 760 (Figma); the content width is capped so it fits under the top bar. */
+@media (min-width: 761px) {
+  .case-layout .sheets > * { width: 100%; max-width: calc((100svh - 71px - 24px) * 1152 / 742); }
+  /* side menu a bit larger */
+  .toc a { font-size: 20px; }
+  .toc ol { gap: 16px; }
+}
+/* menu stays on the left; content centres in the space beside it, so spare width is shared, not piled on the right */
+@media (min-width: 761px) {
+  .case-layout .sheets > * { margin-left: auto; margin-right: auto; }
+}
+@media (min-width: 761px) { .case-layout .sheets { overflow-x: clip; } }   /* slides' hidden right margin never makes the page scroll sideways */
+.doll .form .plate.rim { fill: none; }

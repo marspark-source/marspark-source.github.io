@@ -8,7 +8,8 @@
   });
   const place = () => {
     const gap = parseFloat(getComputedStyle(sheets).rowGap) || 0;
-    pairs.forEach(([d, el]) => { d.style.top = (el.offsetTop - gap / 2) + 'px'; });
+    // each line spans exactly the section below it (sections can be centred narrower than the column)
+    pairs.forEach(([d, el]) => { Object.assign(d.style, { top: (el.offsetTop - gap / 2) + 'px', left: el.offsetLeft + 'px', width: el.offsetWidth + 'px', right: 'auto' }); });
   };
   place(); addEventListener('resize', place); addEventListener('load', place);
 })();
