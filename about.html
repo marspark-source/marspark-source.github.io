@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795704038">
+<link rel="stylesheet" href="style.css?v=1795704186">
 </head>
 <body>
 
@@ -294,7 +294,7 @@
 
     <figure class="doll" aria-label="Things I have made, styled on a paper-doll dress form in three outfits; click a piece to put it on or take it off">
       <div class="stage">
-        <p class="doll-hint"><span class="hint-arrow" aria-hidden="true">↓ </span>Click an item to put it on or take it off</p>
+        <p class="doll-hint"><span class="hint-arrow" aria-hidden="true">↓ </span>Click an item to build an outfit</p>
         <svg class="form" viewBox="0 0 300 520" aria-hidden="true">
           <!-- head + neck -->
           <!-- head in profile, looking left: forehead, nose, lips, chin; round back of the head for the bonnet -->
@@ -660,7 +660,7 @@
       letterSvg.parentElement.style.minHeight = d.height + 'px';   // icons sit level with the 1 / 3 row
     }
     fitLetter(); addEventListener('resize', fitLetter);
-    if (matchMedia('(hover: none)').matches) { const hint = doll.querySelector('.doll-hint'); if (hint) hint.lastChild.textContent = 'Tap an item to put it on or take it off'; }
+    if (matchMedia('(hover: none)').matches) { const hint = doll.querySelector('.doll-hint'); if (hint) hint.lastChild.textContent = 'Tap an item to build an outfit'; }
     // the items glow softly until the first click, so visitors know they can be clicked
     doll.classList.add('untouched');
     const touched = () => doll.classList.remove('untouched');
@@ -670,8 +670,8 @@
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795704038" defer></script>
-<script src="dividers.js?v=1795704038" defer></script>
+<script src="menu.js?v=1795704186" defer></script>
+<script src="dividers.js?v=1795704186" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {

@@ -1764,3 +1764,13 @@ template.phone-part { display: none; }
   .intro .intro-more dt, .intro .intro-more dd { padding: 7px 0 !important; border-bottom: 1px solid rgba(209,209,209,.6); font-size: 13.5px; }
   .intro .intro-more dt { font-weight: 600; }
 }
+/* phones: the picture is exactly as tall as the title + What/Date/Context beside it */
+@media (max-width: 760px) {
+  .intro { grid-template-rows: auto auto auto auto auto !important; }
+  .intro .intro-fig .zoom, [data-project="screenager"] .intro .intro-fig .zoom, [data-project="study-hall"] .intro .intro-fig .zoom { min-height: 0 !important; height: 100% !important; }
+  .intro .intro-facts:not(.intro-more) { align-self: start; }
+}
+@media (max-width: 760px) {
+  .intro .intro-fig .zoom { position: relative; }
+  .intro .intro-fig .zoom img { position: absolute; inset: 0; }
+}
