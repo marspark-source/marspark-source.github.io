@@ -119,14 +119,16 @@
     // reading order: things that sit side by side on the slide are read column by column
     // (the whole left column first, then the right one), otherwise top to bottom
     const raw = [
-      ...rows.map(r => ({ y: r.y0, y1: r.y1, x: Math.min(...r.items.map(t => t.x + t.w / 2)), row: r })),
+      ...rows.map(r => ({ y: r.y0, y1: r.y1, x: Math.min(...r.items.map(t => t.x)) + 20, wide: r.items.length > 1 && Math.max(...r.items.map(t => t.x + t.w)) - Math.min(...r.items.map(t => t.x)) > 700, last: r.items.some(t => t.el.classList.contains('v20')), row: r })),   // text belongs to the column it starts in
       ...els.map(w => ({ y: w._p.y0 + PAD + 12, y1: w._p.y0 + w._p.h - PAD, x: w._p.x0 + w._p.w / 2, el: w })),
     ].sort((a, b) => a.y - b.y);
     const clusters = [];
     raw.forEach(o => { const c = clusters[clusters.length - 1]; if (c && o.y < c.y1 + 60) { c.list.push(o); c.y1 = Math.max(c.y1, o.y1); } else clusters.push({ y1: o.y1, list: [o] }); });
-    const three = raw.some(o => o.x > 464 && o.x < 832) && raw.some(o => o.x > 856);
+    const pics = raw.filter(o => o.el);   // three columns only when the pictures themselves sit in three columns
+    const three = pics.some(o => o.x < 452) && pics.some(o => o.x > 464 && o.x < 832) && pics.some(o => o.x > 856);
     const col = o => three ? (o.x < 452 ? 0 : o.x < 844 ? 1 : 2) : (o.x < 648 ? 0 : 1);
-    const order = clusters.flatMap(c => c.list.sort((a, b) => col(a) - col(b) || a.y - b.y));
+    const key = o => o.last ? 10 : o.wide ? 9 : col(o);   // the slide's closing caption is read last   // rows that run across all columns (a table under pictures) come after them
+    const order = clusters.flatMap(c => c.list.sort((a, b) => key(a) - key(b) || a.y - b.y));
     const blocks = []; let tbox = null;
     order.forEach(o => {
       if (o.row) {
