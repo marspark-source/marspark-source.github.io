@@ -1548,3 +1548,35 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
 .doll .outfit-count[hidden] { display: none; }
 @media (max-width: 860px) { .doll .outfit-bar { width: 100%; } }
 @media (max-width: 760px) { .sheets .video figcaption { font-size: 13px; line-height: 1.4; margin-top: 8px; } }
+
+/* ---------- ABOUT dress-up on phones: no double-tap zoom, pinch still works outside the items ---------- */
+.doll .stage { touch-action: manipulation; }
+.doll .piece { touch-action: none; }          /* items can still be dragged */
+.doll .deck-btn, .doll .piece-label { touch-action: manipulation; }
+.doll .piece-label .hand { overflow: visible; }
+
+
+/* ---------- PROJECT INTRO on phones: smaller title, then a smaller photo, then the facts, on one screen ---------- */
+@media (max-width: 760px) {
+  .intro { display: flex !important; flex-direction: column; row-gap: 10px; }
+  .intro .intro-text { display: contents; }
+  .intro .intro-title { order: 0; font-size: 30px; line-height: 1.1; margin: 0; }
+  .intro .intro-fig { order: 1; display: flex; flex-direction: column; align-items: center; }
+  .intro .intro-fig .zoom { width: auto; height: min(32svh, 260px); aspect-ratio: 564 / 640; }
+  .intro .intro-fig figcaption { position: static; font-size: 12px; margin-top: 4px; text-align: center; }
+  .intro .intro-facts { order: 2; font-size: 13.5px; line-height: 1.35; grid-template-columns: 82px 1fr; }
+  .intro .intro-facts dt, .intro .intro-facts dd { padding: 6px 0; }
+}
+@media (max-width: 760px) {
+  .intro .intro-fig { display: contents; }
+  .intro .intro-fig .zoom { order: 1; align-self: center; width: 100%; height: min(32svh, 260px); aspect-ratio: auto; }
+  .intro .intro-fig .zoom img { width: 100%; height: 100%; object-fit: contain; }
+  .intro .intro-fig figcaption { order: 1; }
+  .intro .intro-fig .intro-note { order: 3; font-size: 13.5px; line-height: 1.4; margin: 0; }
+}
+@media (max-width: 760px) {
+  [data-project="screenager"] .intro { --pic-h: min(28svh, 220px) !important; }
+  [data-project="screenager"] .intro .intro-fig .zoom { height: var(--pic-h) !important; width: calc(var(--pic-h) * 564 / 496) !important; max-width: 100%; }
+  [data-project="screenager"] .intro .intro-fig figcaption { position: static; left: auto; transform: none; white-space: normal; }
+  [data-project="screenager"] .intro .intro-fig .intro-note { position: static; width: auto; margin: 0; font-size: 13.5px; }
+}

@@ -85,7 +85,26 @@
       });
     });
 
-    // 4) build the pieces: a clipped copy of the slide for each
+    // 3b) a dark panel holding a grid of steps (3+ pictures with captions) becomes one card per step,
+    //     later shown two per row in reading order (1 2 / 3 4 / 5 6)
+    const zooms = items.filter(i => i.el.classList.contains('zoom') && inPanel(i));
+    const stepCards = [];
+    for (let n = pieces.length - 1; n >= 0; n--) {
+      const p = pieces[n];
+      const inside = zooms.filter(z => z.x + z.w / 2 > p.x0 && z.x + z.w / 2 < p.x0 + p.w && z.y + z.h / 2 > p.y0 && z.y + z.h / 2 < p.y0 + p.h);
+      if (inside.length < 2 || zooms.length < 3) continue;
+      const capOf = z => items.filter(i => i !== z && !i.el.classList.contains('zoom') && i.x + i.w / 2 > z.x - 4 && i.x + i.w / 2 < z.x + z.w + 4 && i.y >= z.y + z.h - 6 && i.y < z.y + z.h + 46);
+      const cards = inside.map(z => { const cap = capOf(z); return { z, cap, bottom: Math.max(z.y + z.h, ...cap.map(i => i.y + i.h)) }; });
+      // only when every picture has its own caption and nothing else in this part would be left out
+      const covered = new Set(cards.flatMap(c => [c.z, ...c.cap]));
+      const inPiece = items.filter(i => i.x + i.w / 2 > p.x0 && i.x + i.w / 2 < p.x0 + p.w && i.y + i.h / 2 > p.y0 && i.y + i.h / 2 < p.y0 + p.h);
+      if (cards.some(c => !c.cap.length) || inPiece.some(i => !covered.has(i) && i.el.textContent.trim())) continue;
+      cards.forEach(({ z, bottom }) => stepCards.push({ x0: z.x - 8, y0: z.y - 8, w: z.w + 16, h: bottom - z.y + 16, card: true, row: Math.round(z.y / 60), col: z.x }));
+      pieces.splice(n, 1);
+    }
+    stepCards.sort((a, b) => a.row - b.row || a.col - b.col);
+    pieces.push(...stepCards);
+
     const els = pieces.map((p, n) => {
       const wrap = document.createElement('div'); wrap.className = 'half' + (p.wide ? ' swipe' : '');
       const copy = inner.cloneNode(true); copy.classList.add('half-in');
@@ -129,13 +148,19 @@
     const col = o => three ? (o.x < 452 ? 0 : o.x < 844 ? 1 : 2) : (o.x < 648 ? 0 : 1);
     const key = o => o.last ? 10 : o.wide ? 9 : col(o);   // the slide's closing caption is read last   // rows that run across all columns (a table under pictures) come after them
     const order = clusters.flatMap(c => c.list.sort((a, b) => key(a) - key(b) || a.y - b.y));
-    const blocks = []; let tbox = null;
+    const blocks = []; let tbox = null, stepGrid = null;
     order.forEach(o => {
       if (o.row) {
         if (!tbox) { tbox = document.createElement('div'); tbox.className = 'ph-text'; blocks.push(tbox); }
         const r = document.createElement('div'); r.className = 'ph-row' + (o.row.items.length > 1 ? ' kv' : '');
         o.row.items.sort((a, b) => a.x - b.x).forEach(t => r.appendChild(textEl(t)));
         tbox.appendChild(r);
+      } else if (o.el._p.card) {
+        tbox = null;
+        if (!stepGrid) {
+          stepGrid = document.createElement('div'); stepGrid.className = 'card-grid in-panel'; stepGrid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+          stepGrid.style.background = '#000'; els.filter(w => w._p.card).forEach(w => stepGrid.appendChild(w)); blocks.push(stepGrid);
+        }
       } else { tbox = null; blocks.push(o.el); if (o.el._hint) blocks.push(o.el._hint); }
     });
     sheet.replaceChildren(...blocks); sheet.classList.add('split');
