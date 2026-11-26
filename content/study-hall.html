@@ -115,6 +115,8 @@
   [data-project="study-hall"] .pv-line circle { fill: #111; stroke: #fff; stroke-width: 1; }
   /* How it works pictures: whole image, centred in a column-wide frame */
   [data-project="study-hall"] .sh-yt.hw img { height: 100%; object-fit: contain; object-position: center; border-radius: 9px; }
+  /* phones: no column titles in How it works (section title + labels are enough) */
+  @media (max-width: 760px) { [data-project="study-hall"] [data-toc^="How it"] .k20 { display: none; } }
   [data-project="study-hall"] .sh-cap2 { font-size: 13px; line-height: 1.3; color: #fff; text-align: center; }
   [data-project="study-hall"] .sh-note { font-size: 12px; line-height: 1.3; color: #9a9a9a; }
   /* compact save button (3) and two-room saved list (4) */
