@@ -1585,3 +1585,20 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
 .doll .tray, .doll .tray.box { display: none !important; }
 /* phones: a clear gap after the letter, so the dress-up starts on its own screen */
 @media (max-width: 860px) { .about-intro .doll { margin-top: 120px; } }
+
+/* ---------- PROJECT INTRO on phones: title left, photo + caption right, the facts underneath ---------- */
+@media (max-width: 760px) {
+  .intro { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 14px; row-gap: 6px; align-items: start; }
+  .intro .intro-title { grid-column: 1; grid-row: 1; font-size: 26px; line-height: 1.1; align-self: start; overflow-wrap: anywhere; }
+  .intro .intro-fig .zoom, [data-project="screenager"] .intro .intro-fig .zoom { grid-column: 2; grid-row: 1; width: 100% !important; height: auto !important; max-height: 34svh; aspect-ratio: auto; }
+  .intro .intro-fig .zoom img { height: auto; max-height: 34svh; }
+  .intro .intro-fig figcaption { grid-column: 2; grid-row: 2; text-align: left; font-size: 11.5px; line-height: 1.35; margin: 2px 0 0; }
+  .intro .intro-facts { grid-column: 1 / -1; grid-row: 3; margin-top: 10px; }
+  .intro .intro-fig .intro-note { grid-column: 1 / -1; grid-row: 4; }
+}
+@media (max-width: 760px) {
+  /* Screenager's subtitle bar is sized from the picture: match the half-width picture */
+  [data-project="screenager"] .intro { --pic-h: calc((100vw - 58px) / 2 * 496 / 564) !important; }
+  [data-project="screenager"] .intro .intro-fig .zoom { height: var(--pic-h) !important; }
+}
+@media (max-width: 760px) { [data-project="screenager"] .intro-fig .subs { height: auto !important; padding: 3px 4px !important; font-size: 8.5px !important; line-height: 1.3 !important; } }
