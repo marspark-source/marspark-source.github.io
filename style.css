@@ -1466,3 +1466,32 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
 .doll .form .plate.rim { fill: none; }
 /* phones: smaller dress-up hint, sitting clear of the pieces in the box */
 @media (max-width: 860px) { .doll .stage .doll-hint { font-size: 10.5px; line-height: 1.3; top: 26%; } }
+
+/* ---------- ABOUT (desktop): edges line up with the top bar (name on the left, About on the right),
+   a clear gap between letter and dress-up, box beside the mannequin, all centred vertically ---------- */
+@media (min-width: 861px) {
+  .about { padding: 0 72px; min-height: calc(100svh - 72px); display: flex; align-items: center; }
+  .about-intro { width: 100%; justify-content: space-between; column-gap: 56px; padding: 16px 0; }
+  .about .letter { padding-left: 0; }
+  .doll { translate: none; }
+  .doll .form { width: 58%; }
+  .doll .tray.box { left: 58%; width: 41%; }
+  .doll .stage .doll-hint { left: 58%; width: 41%; }
+}
+@media (min-width: 861px) {
+  /* letter fills its side so only a small, even space separates it from the dress-up */
+  .about-intro { grid-template-columns: minmax(0, 1fr) var(--dw); justify-content: stretch; column-gap: 48px; }
+  .letter .hand-letter { width: min(100%, (100svh - 190px) * 1.0); }
+}
+@media (min-width: 861px) {
+  /* letter and dress-up sit together with a small space, and the pair is centred on the page */
+  .about-intro { grid-template-columns: auto var(--dw); justify-content: center; column-gap: 8px; }
+}
+@media (min-width: 861px) {
+  /* the letter starts under the middle of the name in the top bar; the dress-up follows a small space after */
+  .about-intro { justify-content: start; }
+  .about .letter { padding-left: 85px; }
+}
+@media (min-width: 861px) {
+  .letter .hand-letter { width: min(100svh - 190px, 100vw - 144px - 85px - 8px - var(--dw)); }
+}

@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795697263">
+<link rel="stylesheet" href="style.css?v=1795698289">
 </head>
 <body>
 
@@ -527,7 +527,7 @@
     const doll = document.querySelector('.doll'); if (!doll) return;
     const stage = doll.querySelector('.stage'), label = doll.querySelector('.outfit-count');
     const DOLL_W = 300 / 500 * 100;                                  // doll area = left part of the stage; the box is on its right
-    const TRAY = { bonnet: [62, 73], bag: [80, 71], flower: [63, 55], cockade: [81, 42] };   // each piece's own spot in the box (left %, top %)
+    const TRAY = { bonnet: [60, 73], bag: [79, 71], flower: [61, 55], cockade: [80, 42] };   // each piece's own spot in the box (left %, top %)
     const OUTFITS = [
       // from fewest to most pieces: 1, 2, then all 4
       { name: 'Everyday',     cockade: {x:20,y:30,w:28,r:-8} },   // what the page opens with
@@ -629,8 +629,8 @@
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795697263" defer></script>
-<script src="dividers.js?v=1795697263" defer></script>
+<script src="menu.js?v=1795698289" defer></script>
+<script src="dividers.js?v=1795698289" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {
