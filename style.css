@@ -1602,3 +1602,11 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
   [data-project="screenager"] .intro .intro-fig .zoom { height: var(--pic-h) !important; }
 }
 @media (max-width: 760px) { [data-project="screenager"] .intro-fig .subs { height: auto !important; padding: 3px 4px !important; font-size: 8.5px !important; line-height: 1.3 !important; } }
+/* phone: picture cards with What / Why under each picture (phone.js), two per row */
+@media (max-width: 760px) {
+  .sheet.split .ph-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
+  .sheet.split .ph-card-pic { display: block; width: 100%; aspect-ratio: 142 / 94; border: 0; padding: 0; background: none; }
+  .sheet.split .ph-card-pic img { width: 100%; height: 100%; object-fit: cover; }
+  .sheet.split .ph-card-t { font-size: 13px; line-height: 1.35; margin-top: 5px; }
+  .sheet.split .ph-card-t b { font-weight: 600; margin-right: 3px; }
+}

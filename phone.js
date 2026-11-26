@@ -58,6 +58,33 @@
     const texts = all.filter(i => !back.includes(i) && isText(i));
     const items = all.filter(i => !back.includes(i) && !texts.includes(i));
     if (!items.length && !texts.length) return;
+
+    // tables whose columns sit under a row of pictures (What / Why under each picture) become
+    // one card per picture: the picture, then its What and Why, two cards per row
+    const tableGrids = [];
+    texts.filter(t => t.el.classList.contains('rl') && /^\s*what\s*$/i.test(t.el.textContent)).forEach(whatL => {
+      const sameRow = (a, b) => Math.abs(a.y - b.y) < 8;
+      const whats = texts.filter(t => t !== whatL && sameRow(t, whatL) && t.x > whatL.x);
+      const whyL = texts.find(t => t.el.classList.contains('rl') && /^\s*why\s*$/i.test(t.el.textContent) && t.y > whatL.y && t.y - whatL.y < 80);
+      const whys = whyL ? texts.filter(t => t !== whyL && sameRow(t, whyL) && t.x > whyL.x) : [];
+      const pics = items.filter(i => i.el.classList.contains('zoom') && i.y < whatL.y && whatL.y - i.y < 260);
+      const cols = whats.map(w => ({ w, y: whys.find(v => Math.abs(v.x - w.x) < 12), pic: pics.find(z => Math.abs(z.x - w.x) < 12) })).filter(c => c.pic);
+      if (cols.length < 3) return;
+      const grid = document.createElement('div'); grid.className = 'ph-cards';
+      cols.sort((a, b) => a.w.x - b.w.x).forEach(c => {
+        const card = document.createElement('div'); card.className = 'ph-card';
+        const z = c.pic.el.cloneNode(true); z.classList.remove('a'); z.removeAttribute('style'); z.classList.add('ph-card-pic');
+        z.querySelectorAll('img[loading]').forEach(i => { i.loading = 'eager'; });
+        card.appendChild(z);
+        const line = (label, item) => { if (!item) return; const pEl = document.createElement('p'); pEl.className = 'ph-card-t'; pEl.innerHTML = '<b>' + label + '</b> '; pEl.append(item.el.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim()); card.appendChild(pEl); };
+        line('What', c.w); line('Why', c.y);
+        grid.appendChild(card);
+      });
+      const used = new Set([whatL, ...whats, whyL, ...whys].filter(Boolean));
+      for (let k = texts.length - 1; k >= 0; k--) if (used.has(texts[k])) texts.splice(k, 1);
+      cols.forEach(c => { const k = items.indexOf(c.pic); if (k >= 0) items.splice(k, 1); });
+      tableGrids.push({ y: Math.min(...cols.map(c => c.pic.y)) + 2, y1: Math.max(...cols.map(c => (c.y || c.w).y + 30)), x: 92, grid });
+    });
     items.forEach(i => { i.x1 = i.x + i.w; i.y1 = i.y + i.h; });
 
     // 1) bands: split top-to-bottom where nothing crosses a tall enough empty strip
@@ -140,6 +167,7 @@
     const raw = [
       ...rows.map(r => ({ y: r.y0, y1: r.y1, x: Math.min(...r.items.map(t => t.x)) + 20, wide: r.items.length > 1 && Math.max(...r.items.map(t => t.x + t.w)) - Math.min(...r.items.map(t => t.x)) > 700, last: r.items.some(t => t.el.classList.contains('v20')), row: r })),   // text belongs to the column it starts in
       ...els.map(w => ({ y: w._p.y0 + PAD + 12, y1: w._p.y0 + w._p.h - PAD, x: w._p.x0 + w._p.w / 2, el: w })),
+      ...tableGrids,
     ].sort((a, b) => a.y - b.y);
     const clusters = [];
     raw.forEach(o => { const c = clusters[clusters.length - 1]; if (c && o.y < c.y1 + 60) { c.list.push(o); c.y1 = Math.max(c.y1, o.y1); } else clusters.push({ y1: o.y1, list: [o] }); });
@@ -155,6 +183,7 @@
         const r = document.createElement('div'); r.className = 'ph-row' + (o.row.items.length > 1 ? ' kv' : '');
         o.row.items.sort((a, b) => a.x - b.x).forEach(t => r.appendChild(textEl(t)));
         tbox.appendChild(r);
+      } else if (o.grid) { tbox = null; blocks.push(o.grid);
       } else if (o.el._p.card) {
         tbox = null;
         if (!stepGrid) {
