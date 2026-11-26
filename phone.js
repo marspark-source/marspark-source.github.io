@@ -268,3 +268,18 @@
     lbImg.src = i.src; lbImg.alt = i.alt; lb.classList.add('open');
   });
 })();
+
+// Phones: in each project intro, What / Date / Context stay beside the picture; Overview and anything after it go full width underneath
+(() => {
+  if (!matchMedia('(max-width: 760px)').matches) return;
+  document.querySelectorAll('.intro').forEach(intro => {
+    const dl = intro.querySelector('.intro-facts'); if (!dl) return;
+    const kids = [...dl.children];
+    const at = kids.findIndex(e => e.tagName === 'DT' && /overview/i.test(e.textContent));
+    if (at < 0) return;
+    const more = document.createElement('dl'); more.className = 'intro-facts intro-more';
+    kids.slice(at).forEach(e => more.appendChild(e));
+    intro.appendChild(more);
+    if (!dl.children.length) dl.remove();
+  });
+})();

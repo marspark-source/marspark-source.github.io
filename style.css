@@ -1752,3 +1752,15 @@ template.phone-part { display: none; }
   .sheet.split .ev-grid.two .ev-cap { margin-top: 4px; }
   [data-project="cubit"] .sheet.split .ev-part:first-of-type { margin-top: 4px; }
 }
+/* phones: the picture runs the full height of the title + info beside it */
+@media (max-width: 760px) {
+  .intro { grid-template-areas: "title pic" "facts pic" ". cap" "note note" !important; grid-template-rows: auto 1fr auto auto !important; }
+  .intro .intro-fig .zoom, [data-project="screenager"] .intro .intro-fig .zoom, [data-project="study-hall"] .intro .intro-fig .zoom {
+    align-self: stretch; height: auto !important; aspect-ratio: auto !important; min-height: calc((100vw - 58px) * 0.55 * 1.2); }
+}
+@media (max-width: 760px) {
+  .intro { grid-template-areas: "title pic" "facts pic" ". cap" "more more" "note note" !important; grid-template-rows: auto 1fr auto auto auto !important; }
+  .intro .intro-facts.intro-more { grid-area: more; display: grid; grid-template-columns: 82px 1fr; margin-top: 10px !important; font-size: 13.5px; line-height: 1.4; }
+  .intro .intro-more dt, .intro .intro-more dd { padding: 7px 0 !important; border-bottom: 1px solid rgba(209,209,209,.6); font-size: 13.5px; }
+  .intro .intro-more dt { font-weight: 600; }
+}
