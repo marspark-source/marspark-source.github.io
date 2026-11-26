@@ -17,6 +17,11 @@
     || el.classList.contains('sh-mood');
   function box(el, o) {
     let r = el.getBoundingClientRect();
+    if (el.tagName.toLowerCase() === 'svg' && el.classList.contains('mh-callouts')) {
+      const parts = [...el.querySelectorAll('path,circle,text,line,rect')].map(c => c.getBoundingClientRect()).filter(q => q.width || q.height);
+      if (parts.length) { const l = Math.min(...parts.map(q => q.left)), t = Math.min(...parts.map(q => q.top));
+        r = { left: l, top: t, width: Math.max(...parts.map(q => q.right)) - l, height: Math.max(...parts.map(q => q.bottom)) - t }; }
+    }
     // plain text: measure the words themselves, not the (often much wider) text box
     if (!el.querySelector('svg,img,video') && el.textContent.trim() && !/^(IMG|VIDEO|svg)$/i.test(el.tagName)) {
       const cs = getComputedStyle(el);
@@ -38,10 +43,21 @@
     const all = [...inner.children].map(el => ({ el, ...box(el, o) }))
       .filter(i => i.w > 0 && i.h > 0 && getComputedStyle(i.el).display !== 'none');
     const back = all.filter(i => isBack(i.el) || i.h < 3);
-    // the section title goes first, on its own; everything else is cut below it
-    const titles = all.filter(i => i.el.classList.contains('h2') && !back.includes(i));
-    const items = all.filter(i => !back.includes(i) && !titles.includes(i));
-    if (!items.length) return;
+    // plain words outside the dark panels become real text on the phone (readable size, wrapping);
+    // everything else (pictures, panels, drawn boxes) is shown as clipped pieces of the slide
+    const panels = back.filter(i => i.el.classList.contains('panel'));
+    const inPanel = i => panels.some(pn => i.x + i.w / 2 > pn.x && i.x + i.w / 2 < pn.x + pn.w && i.y + i.h / 2 > pn.y && i.y + i.h / 2 < pn.y + pn.h);
+    const isText = i => {
+      const el = i.el;
+      if (el.querySelector('img,svg,video') || /^(IMG|VIDEO|svg|BUTTON)$/i.test(el.tagName) || el.classList.contains('zoom')) return false;
+      if (!el.textContent.trim() || inPanel(i) || [...el.classList].some(c => c.startsWith('mh-') || c === 'lg' || c.startsWith('lg-'))) return false;
+      const cs = getComputedStyle(el);
+      const filled = (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent') || parseFloat(cs.borderTopWidth) > 0;
+      return !filled;
+    };
+    const texts = all.filter(i => !back.includes(i) && isText(i));
+    const items = all.filter(i => !back.includes(i) && !texts.includes(i));
+    if (!items.length && !texts.length) return;
     items.forEach(i => { i.x1 = i.x + i.w; i.y1 = i.y + i.h; });
 
     // 1) bands: split top-to-bottom where nothing crosses a tall enough empty strip
@@ -51,7 +67,7 @@
       if (last && a - last[1] < BAND_GAP) last[1] = b; else bands.push([a, b]);
     });
 
-    const pieces = titles.map(t => ({ x0: t.x - PAD, y0: t.y - PAD, w: Math.min(t.w, MAXW) + PAD * 2, h: t.h + PAD * 2, title: true }));
+    const pieces = [];
     bands.forEach(([ya, yb]) => {
       const inBand = items.filter(i => i.y >= ya - 1 && i.y1 <= yb + 1);
       // 2) atoms: column ranges that no empty vertical gap runs through
@@ -90,13 +106,41 @@
       } else wrap.appendChild(copy);
       wrap._p = p; return wrap;
     });
-    const blocks = [];
-    els.forEach(w => { blocks.push(w); if (w._hint) blocks.push(w._hint); });
+    // text rows: words that share a line (a table label and its value) stay side by side
+    const isLabel = e => e.el.classList.contains('k16') || e.el.classList.contains('rl');
+    const rows = texts.filter(isLabel).map(t => ({ y0: t.y, y1: t.y + t.h, items: [t] }));
+    texts.filter(t => !isLabel(t)).sort((a, b) => a.y - b.y || a.x - b.x).forEach(t => {
+      const r = rows.filter(r => isLabel(r.items[0]) && t.x > r.items[0].x && Math.min(r.y1, t.y + t.h) - Math.max(r.y0, t.y) > Math.min(t.h, r.y1 - r.y0) * 0.4)
+        .sort((a, b) => (t.x - a.items[0].x) - (t.x - b.items[0].x))[0];
+      if (r) { r.items.push(t); r.y1 = Math.max(r.y1, t.y + t.h); }
+      else rows.push({ y0: t.y, y1: t.y + t.h, items: [t] });
+    });
+    const textEl = t => { const c = t.el.cloneNode(true); c.classList.remove('a'); c.removeAttribute('style'); c.classList.add('ph-t'); return c; };
+    // reading order: things that sit side by side on the slide are read column by column
+    // (the whole left column first, then the right one), otherwise top to bottom
+    const raw = [
+      ...rows.map(r => ({ y: r.y0, y1: r.y1, x: Math.min(...r.items.map(t => t.x + t.w / 2)), row: r })),
+      ...els.map(w => ({ y: w._p.y0 + PAD + 12, y1: w._p.y0 + w._p.h - PAD, x: w._p.x0 + w._p.w / 2, el: w })),
+    ].sort((a, b) => a.y - b.y);
+    const clusters = [];
+    raw.forEach(o => { const c = clusters[clusters.length - 1]; if (c && o.y < c.y1 + 60) { c.list.push(o); c.y1 = Math.max(c.y1, o.y1); } else clusters.push({ y1: o.y1, list: [o] }); });
+    const three = raw.some(o => o.x > 464 && o.x < 832) && raw.some(o => o.x > 856);
+    const col = o => three ? (o.x < 452 ? 0 : o.x < 844 ? 1 : 2) : (o.x < 648 ? 0 : 1);
+    const order = clusters.flatMap(c => c.list.sort((a, b) => col(a) - col(b) || a.y - b.y));
+    const blocks = []; let tbox = null;
+    order.forEach(o => {
+      if (o.row) {
+        if (!tbox) { tbox = document.createElement('div'); tbox.className = 'ph-text'; blocks.push(tbox); }
+        const r = document.createElement('div'); r.className = 'ph-row' + (o.row.items.length > 1 ? ' kv' : '');
+        o.row.items.sort((a, b) => a.x - b.x).forEach(t => r.appendChild(textEl(t)));
+        tbox.appendChild(r);
+      } else { tbox = null; blocks.push(o.el); if (o.el._hint) blocks.push(o.el._hint); }
+    });
     sheet.replaceChildren(...blocks); sheet.classList.add('split');
 
     const fit = () => els.forEach(wrap => {
       const p = wrap._p, W = wrap.clientWidth;
-      const s = p.wide ? W / (p.w / 2) : p.title ? Math.min(W / p.w, 0.9) : Math.min(W / p.w, 2);
+      const s = p.wide ? W / (p.w / 2) : Math.min(W / p.w, 2);
       const copy = wrap.querySelector('.half-in');
       copy.style.transform = `scale(${s}) translate(${-p.x0}px, ${-p.y0}px)`;
       wrap.style.height = p.h * s + 'px';

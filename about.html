@@ -18,7 +18,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795698497">
+<link rel="stylesheet" href="style.css?v=1795699730">
 </head>
 <body>
 
@@ -595,6 +595,7 @@
       // make one of the three outfits, the doll is dressed in that outfit
       const toggle = () => {
         state[k] = state[k] ? null : { ...(OUTFITS[current][k] || HOME[k]) };
+        if (k === 'bonnet' && !state.bonnet && state.flower && state.flower.y < 12) state.flower = { ...HOME.flower };   // flower was pinned on the bonnet
         const worn = pieces.map(p => p.dataset.piece).filter(n => state[n]).sort().join();
         const m = outfitOf(worn);
         if (m >= 0 && m !== current) wear(m); else render();
@@ -638,6 +639,7 @@
       letterSvg.parentElement.style.minHeight = d.height + 'px';   // icons sit level with the 1 / 3 row
     }
     fitLetter(); addEventListener('resize', fitLetter);
+    if (matchMedia('(hover: none)').matches) { const hint = doll.querySelector('.doll-hint'); if (hint) hint.textContent = 'Tap an item to put it on or take it off'; }
     // the items glow softly until the first click, so visitors know they can be clicked
     doll.classList.add('untouched');
     const touched = () => doll.classList.remove('untouched');
@@ -647,8 +649,8 @@
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795698497" defer></script>
-<script src="dividers.js?v=1795698497" defer></script>
+<script src="menu.js?v=1795699730" defer></script>
+<script src="dividers.js?v=1795699730" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {
