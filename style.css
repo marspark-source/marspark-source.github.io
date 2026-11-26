@@ -1728,3 +1728,9 @@ template.phone-part { display: none; }
   [data-project="screenager"] .intro .intro-fig .zoom { aspect-ratio: 564 / 496 !important; }
   [data-project="screenager"] .intro-fig .cap-who { display: block; margin-top: 3px; color: var(--muted); font-style: normal; }
 }
+/* phones: every project's main picture the same tall shape, cropped to fill */
+@media (max-width: 760px) {
+  .intro .intro-fig .zoom, [data-project="screenager"] .intro .intro-fig .zoom { aspect-ratio: 4 / 5 !important; width: 100% !important; height: auto !important; overflow: hidden; }
+  .intro .intro-fig .zoom img, [data-project="study-hall"] .intro .intro-fig .zoom img { width: 100%; height: 100% !important; object-fit: cover !important; object-position: center; }
+}
+@media (max-width: 760px) { [data-project="study-hall"] .intro .intro-fig .zoom { aspect-ratio: 4 / 5 !important; } }

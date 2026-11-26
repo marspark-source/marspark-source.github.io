@@ -246,7 +246,7 @@
       }
       blocks.splice(at, 0, ...frag.children);
     });
-    const isDark = b => b && (b.classList.contains('dark') || b.classList.contains('in-panel') || b.classList.contains('ph-list'));
+    const isDark = b => b && (b.classList.contains('dark') || b.classList.contains('in-panel') || b.classList.contains('ph-list') || b.classList.contains('ev-group'));
     blocks.forEach((b, i) => { if (isDark(b) && isDark(blocks[i - 1])) b.classList.add('joined'); if (isDark(b) && isDark(blocks[i + 1])) b.classList.add('joins'); });
     sheet.replaceChildren(...blocks); sheet.classList.add('split');
 
