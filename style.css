@@ -1640,3 +1640,17 @@ template.phone-version { display: none; }
   .sheet.hand-made .sb-wide img, .sheet.hand-made .sb-wide svg { width: 100%; height: 100%; object-fit: contain; }
   .sheet.hand-made .sb-stack .sb-cap { font-size: 15px; }
 }
+/* phone: a chart's numbered list, under the chart on the dark panel */
+@media (max-width: 760px) {
+  .sheet.split .ph-list { background: #000; color: #fff; padding: 4px 14px 16px; margin-top: -22px; border-radius: 0 0 6px 6px; }
+  .sheet.split .ph-list ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+  .sheet.split .ph-list li { display: flex; gap: 8px; font-size: 13px; line-height: 1.35; }
+  .sheet.split .ph-list li > span:first-child { flex: none; width: 18px; height: 18px; border-radius: 50%; background: #fff; color: #000; font-size: 11px; display: grid; place-items: center; }
+  .sheet.split .ph-list li b { display: block; font-weight: 600; font-size: 14px; }
+}
+@media (max-width: 760px) {
+  .sheet.split .ph-list { margin-top: -22px; padding-top: 6px; position: relative; z-index: 1; }
+  .sheet.split .ph-list ol { position: static !important; width: auto !important; }
+  .sheet.split .ph-list li { font-size: 12px; }
+  .sheet.split .ph-list li b { font-size: 13px; }
+}

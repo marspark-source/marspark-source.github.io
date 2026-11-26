@@ -124,6 +124,23 @@
       });
     });
 
+    // 3a) a chart with its numbered list beside it (ol.steps): the chart gets the full width, the list goes under it
+    const listBlocks = [];
+    pieces.forEach(p => {
+      const inP = i => i.x + i.w / 2 > p.x0 && i.x + i.w / 2 < p.x0 + p.w && i.y + i.h / 2 > p.y0 && i.y + i.h / 2 < p.y0 + p.h;
+      const ols = items.filter(i => i.el.tagName === 'OL' && i.el.classList.contains('steps') && inP(i));
+      if (!ols.length) return;
+      const rest = items.filter(i => inP(i) && !ols.includes(i) && i.x + i.w <= Math.min(...ols.map(o => o.x)) + 4);
+      if (!rest.length) return;
+      const x0 = Math.min(...rest.map(i => i.x)), x1 = Math.max(...rest.map(i => i.x + i.w)), y0 = Math.min(...rest.map(i => i.y)), y1 = Math.max(...rest.map(i => i.y + i.h));
+      Object.assign(p, { x0: x0 - PAD, y0: y0 - PAD, w: x1 - x0 + PAD * 2, h: y1 - y0 + PAD * 2, dark: true });
+      ols.forEach(o => {
+        const box = document.createElement('div'); box.className = 'ph-list';
+        const c = o.el.cloneNode(true); c.classList.remove('a'); c.removeAttribute('style'); box.appendChild(c);
+        listBlocks.push({ y: p.y0 + p.h - 1, y1: p.y0 + p.h, x: x0 + 20, grid: box, last: false });
+      });
+    });
+
     // 3b) a dark panel holding a grid of steps (3+ pictures with captions) becomes one card per step,
     //     later shown two per row in reading order (1 2 / 3 4 / 5 6)
     const zooms = items.filter(i => i.el.classList.contains('zoom') && inPanel(i));
@@ -180,6 +197,7 @@
       ...rows.map(r => ({ y: r.y0, y1: r.y1, x: Math.min(...r.items.map(t => t.x)) + 20, wide: r.items.length > 1 && Math.max(...r.items.map(t => t.x + t.w)) - Math.min(...r.items.map(t => t.x)) > 700, last: r.items.some(t => t.el.classList.contains('v20')), row: r })),   // text belongs to the column it starts in
       ...els.map(w => ({ y: w._p.y0 + PAD + 12, y1: w._p.y0 + w._p.h - PAD, x: w._p.x0 + w._p.w / 2, el: w })),
       ...tableGrids,
+      ...listBlocks,
     ].sort((a, b) => a.y - b.y);
     const clusters = [];
     raw.forEach(o => { const c = clusters[clusters.length - 1]; if (c && o.y < c.y1 + 60) { c.list.push(o); c.y1 = Math.max(c.y1, o.y1); } else clusters.push({ y1: o.y1, list: [o] }); });
