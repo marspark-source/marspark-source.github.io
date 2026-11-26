@@ -1547,3 +1547,4 @@ html[style*="--bar-p: 1"] .toc-home { pointer-events: auto; }
 .doll .outfit-bar .outfit-title .hand { height: 34px; }
 .doll .outfit-count[hidden] { display: none; }
 @media (max-width: 860px) { .doll .outfit-bar { width: 100%; } }
+@media (max-width: 760px) { .sheets .video figcaption { font-size: 13px; line-height: 1.4; margin-top: 8px; } }
