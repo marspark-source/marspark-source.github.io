@@ -40,7 +40,7 @@
       <dt>Date</dt><dd>2022</dd>
       <dt>Context</dt><dd>Solo, NYU Tisch Film</dd>
       <dt>Overview</dt><dd>A film made from early internet ads, home videos and YouTube users talking about MySpace.</dd>
-      <dt>Problem</dt><dd>The web that promised to help kids learn also sold girls false images of what they should look like.</dd>
+      <dt class="gap">Problem</dt><dd class="gap">The web that promised to help kids learn also sold girls false images of what they should look like.</dd>
       <dt>Question</dt><dd>How does growing up online inform the way girls view their own bodies?</dd>
       <dt>Concept</dt><dd>How a tool built to connect people became a place where girls compare themselves.</dd>
     </dl>
@@ -62,6 +62,8 @@
     [data-project="screenager"] .intro.fitted .intro-fig .zoom img { object-fit: contain; }
     [data-project="screenager"] .intro.fitted .intro-text { justify-content: flex-start; }
     [data-project="screenager"] .intro.fitted .intro-fig { align-self: start; }
+    [data-project="screenager"] .intro.fitted .intro-facts dt, [data-project="screenager"] .intro.fitted .intro-facts dd { padding: calc(15px * var(--k, 1)) 0; }
+    [data-project="screenager"] .intro.fitted .intro-facts { line-height: 1.45; }
     [data-project="screenager"] .intro.fitted .intro-fig figcaption { position: static; transform: none; white-space: normal; text-align: left; }
     [data-project="screenager"] .intro.fitted .intro-fig .intro-note { position: static; width: auto; margin: calc(16px * var(--k, 1)) 0 0; }
   }

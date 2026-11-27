@@ -1798,3 +1798,7 @@ template.phone-part { display: none; }
 @media (max-width: 760px) { .w-desk { display: none; } .w-phone { display: inline; } }
 /* home board: each tagline stays on one line */
 .board .proj .what { white-space: nowrap; }
+/* project intros: a small gap before Problem, which starts the second group of facts */
+.intro-facts .gap { margin-top: calc(28px * var(--k, 1)); border-top: 1px solid rgba(209,209,209,.35); }
+@media (max-width: 760px) { .intro-facts .gap { margin-top: 14px; } }
+@media (min-width: 761px) { [data-project="tone-notation"] .intro-facts dt, [data-project="tone-notation"] .intro-facts dd { padding: calc(11.4px * var(--k, 1)) 0; } }
