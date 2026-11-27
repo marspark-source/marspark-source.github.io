@@ -2098,3 +2098,18 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
 .board .proj[data-id="screenager"] .label .arrow { position: absolute; left: 100%; margin-left: .3em; top: 0; }
 /* CV: within a row, the date/label and its text share one baseline (rows line up across columns by baseline, see about.html) */
 .cv-dialog .cv-col .entry, .cv-dialog .cv-col .kv, .cv-dialog .cv-col .small-kv { align-items: baseline; }
+/* CV on laptops: one shared line grid. Every line in both columns is 18px tall and every gap is a whole
+   number of lines, so each line on the right sits on the same baseline as a line on the left. */
+@media (min-width: 861px) {
+  .cv-dialog .cv.cv-2col .cv-col, .cv-dialog .cv.cv-2col .cv-col * { line-height: 18px !important; }
+  .cv-dialog .cv.cv-2col .cv-col section { padding: 0 !important; margin: 0 0 36px !important; border: 0; }
+  .cv-dialog .cv.cv-2col .cv-col section:last-child { margin-bottom: 0 !important; }
+  .cv-dialog .cv.cv-2col .cv-col h3 { line-height: 36px !important; margin: 0 !important; padding: 0 !important; }
+  .cv-dialog .cv.cv-2col .cv-col .kv, .cv-dialog .cv.cv-2col .cv-col .small-kv { row-gap: 0 !important; margin: 0 !important; }
+  .cv-dialog .cv.cv-2col .cv-col dt, .cv-dialog .cv.cv-2col .cv-col dd { margin: 0 !important; padding: 0 !important; }
+  .cv-dialog .cv.cv-2col .cv-col .entry { margin: 0 0 18px !important; }
+  .cv-dialog .cv.cv-2col .cv-col .entry:last-child { margin-bottom: 0 !important; }
+  .cv-dialog .cv.cv-2col .cv-col .entry p, .cv-dialog .cv.cv-2col .cv-col .entry ul,
+  .cv-dialog .cv.cv-2col .cv-col .entry li { margin: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+  .cv-dialog .cv.cv-2col .cv-col .when small { display: block; }
+}
