@@ -2086,3 +2086,7 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
   .about .letter .icon-btn.open-cv svg { width: 46px; }
 }
 @media (max-width: 860px) { .about { padding-top: 12px !important; } }
+/* hand-written names: each stroke stays hidden until its turn (no round dots showing before the pen reaches it) */
+@keyframes draw-stroke { from { stroke-dashoffset: 1; opacity: 1; } to { stroke-dashoffset: 0; opacity: 1; } }
+.name-svg path, .tc-name path, .tc-kicker-hand path { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .name-svg path, .tc-name path, .tc-kicker-hand path { opacity: 1; } }
