@@ -1782,3 +1782,14 @@ template.phone-part { display: none; }
 @media (min-width: 861px) { .about-intro .doll { translate: 32px 0; } }
 /* phones: Tone Notation's main picture shown whole (no crop) */
 @media (max-width: 760px) { [data-project="tone-notation"] .intro .intro-fig .zoom img { object-fit: contain !important; object-position: right center !important; } }
+
+/* ---------- HOME (desktop): hovering a project greys out the others; the hovered one plays its preview in place ---------- */
+.proj .thumb img, .proj .label, .proj .what { transition: opacity .3s var(--ease), filter .3s var(--ease), transform .6s var(--ease); }
+.board.is-pick .proj:not(.hot) .thumb img,
+.board.is-pick .proj:not(.hot) .label,
+.board.is-pick .proj:not(.hot) .what { opacity: .35; filter: grayscale(1); }
+.board.is-pick .proj.hot .thumb img,
+.board.is-pick .proj.hot .label,
+.board.is-pick .proj.hot .what { opacity: 1; filter: none; }
+/* CV: the year (and every label) sits on the same baseline as the first line of its content */
+.entry, .kv, .small-kv { align-items: baseline; }

@@ -24,7 +24,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795772215">
+<link rel="stylesheet" href="style.css?v=1795772352">
 </head>
 <body>
 
@@ -273,47 +273,20 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
     rows.forEach(r => r.dataset.theme === t && r.classList.add('on'));
   }
 
-  let lastActive = null;   // the tile the visitor actually hovered
+  // Hover (or keyboard focus): nothing moves. The hovered project plays its preview in place
+  // and the other projects grey out. Off the tile: back to normal.
   function activate(p) {
-    if (performance.now() < busyUntil || p === ignore) return;
-    lastActive = p;
-    board.classList.add('is-pick');      // dim the other projects
-    show(p.dataset.id);
+    projs.forEach(x => x.classList.toggle('hot', x === p));
+    board.classList.add('is-pick');
     preview.start(p);
-    // after moving, whatever tile now sits under the pointer must be left and re-entered first
-    setTimeout(() => {
-      ignore = projs.find(x => x.matches(':hover') && x !== p) || null;
-    }, 460);
   }
+  function reset() { projs.forEach(x => x.classList.remove('hot')); board.classList.remove('is-pick'); preview.stop(); }
   projs.forEach(p => {
-    // Hover intent: only react once the pointer rests on a tile for a moment,
-    // so passing over tiles on the way somewhere else doesn't rearrange the board.
-    let wait = null;
-    p.addEventListener('pointerenter', () => { clearTimeout(wait); wait = setTimeout(() => { if (p.matches(':hover')) activate(p); }, 180); });
-    p.addEventListener('pointerleave', () => { clearTimeout(wait); if (ignore === p) ignore = null; });
-    p.addEventListener('focus', () => { board.classList.add('is-pick'); show(p.dataset.id); preview.start(p); });
+    p.addEventListener('pointerenter', () => activate(p));
+    p.addEventListener('pointerleave', () => { if (p.classList.contains('hot')) reset(); });
+    p.addEventListener('focus', () => activate(p));
   });
-  board.addEventListener('pointerleave', () => { ignore = null; board.classList.remove('is-pick'); preview.stop(); });
-  board.addEventListener('focusout', e => { if (!board.contains(e.relatedTarget)) { board.classList.remove('is-pick'); preview.stop(); } });
-  // Back to normal as soon as the mouse is on empty space (not on a project), after a short
-  // pause so tiles gliding past the pointer don't make it flicker.
-  // Off a tile: stop dimming, but keep the arrangement the visitor picked (and its line styles),
-  // so they can explore the legend for it. It changes only when another project is hovered.
-  function reset() { ignore = null; board.classList.remove('is-pick'); preview.stop(); }
-  let idle = null;
-  board.addEventListener('pointermove', e => {
-    if (e.target.closest('.proj')) { clearTimeout(idle); idle = null; return; }
-    if (!idle && lastActive) idle = setTimeout(() => {
-      idle = null;
-      if (!projs.some(p => p.matches(':hover')) && performance.now() >= busyUntil) reset();
-    }, 400);
-  });
-  // Clicking: if the tile under the mouse only got there because the board rearranged,
-  // open the project that was hovered (it is now in the middle) instead.
-  projs.forEach(p => p.addEventListener('click', e => {
-    const slidIn = p === ignore || (performance.now() < busyUntil && p !== lastActive);
-    if (lastActive && p !== lastActive && slidIn) { e.preventDefault(); location.href = lastActive.href; }
-  }));
+  board.addEventListener('focusout', e => { if (!board.contains(e.relatedTarget)) reset(); });
 
   rows.forEach(r => {
     r.addEventListener('mouseenter', () => { board.classList.remove('is-pick'); focusTheme(r.dataset.theme); });
@@ -328,7 +301,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
   requestAnimationFrame(() => requestAnimationFrame(() => board.classList.remove('no-anim')));
 </script>
 <script>
-  // Hover preview: the tile in the middle shows the project moving — its demo video if there is
+  // Hover preview: the hovered tile shows the project moving — its demo video if there is
   // one, otherwise a quick slideshow of images from the project page.
   const preview = (() => {
     let cur = null, timer = null, layer = null;
