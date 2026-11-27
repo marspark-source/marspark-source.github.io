@@ -1807,3 +1807,5 @@ template.phone-part { display: none; }
   .about-intro { grid-template-columns: auto minmax(0, 1fr) !important; }
   .about-intro .doll { justify-self: center; width: var(--dw); translate: none !important; }
 }
+/* About letter: a much gentler wobble than the name */
+.letter .hand-letter.boil { filter: url(#letter-boil); }
