@@ -2112,4 +2112,6 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
   .cv-dialog .cv.cv-2col .cv-col .entry p, .cv-dialog .cv.cv-2col .cv-col .entry ul,
   .cv-dialog .cv.cv-2col .cv-col .entry li { margin: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; }
   .cv-dialog .cv.cv-2col .cv-col .when small { display: block; }
+  /* Exhibitions heading: same size as Email and on Email's line, so it fits beside the contact info */
+  .cv-dialog .cv.cv-2col .cv-col-fill > section:first-child h3 { font-size: 13.5px; font-weight: 600; line-height: 18px !important; }
 }
