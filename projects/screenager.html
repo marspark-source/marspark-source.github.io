@@ -24,7 +24,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../style.css?v=1795774529">
+<link rel="stylesheet" href="../style.css?v=1795774956">
 </head>
 <body class="project">
 
@@ -123,36 +123,35 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 </section>
 
 <style>
-  /* computer: What/Date/Context/Overview beside the picture (the picture ends where the text ends);
-     Problem/Question/Concept full width underneath, then the closing sentence */
+  /* computer: all the facts beside the picture; the picture, the speaker line and the closing sentence
+     under it end level with the last fact (Concept) */
   @media (min-width: 761px) {
-    [data-project="screenager"] .intro.split { padding-bottom: 0; row-gap: calc(64px * var(--k, 1)); }
-    [data-project="screenager"] .intro.split .intro-text { justify-content: space-between; }
-    [data-project="screenager"] .intro.split .intro-after { grid-column: 1 / -1; }
-    [data-project="screenager"] .intro.split .intro-fig .intro-note { position: static; width: auto; margin: 0; }
-    [data-project="screenager"] .intro.split > .intro-note { grid-column: 1 / -1; justify-self: end; width: calc(564px * var(--k, 1)); margin: 0; font-size: calc(20px * var(--k, 1)); line-height: 1.4; }
+    [data-project="screenager"] .intro.fitted { padding-bottom: 0; grid-template-columns: 1fr 1fr; }
+    [data-project="screenager"] .intro.fitted .intro-fig .zoom { width: 100% !important; height: var(--pic-h) !important; }
+    [data-project="screenager"] .intro.fitted .intro-fig .zoom { background: #000; }
+    [data-project="screenager"] .intro.fitted .intro-fig .zoom img { object-fit: contain; }
+    [data-project="screenager"] .intro.fitted .intro-text { justify-content: flex-start; }
+    [data-project="screenager"] .intro.fitted .intro-fig { align-self: start; }
+    [data-project="screenager"] .intro.fitted .intro-fig figcaption { position: static; transform: none; white-space: normal; text-align: left; }
+    [data-project="screenager"] .intro.fitted .intro-fig .intro-note { position: static; width: auto; margin: calc(16px * var(--k, 1)) 0 0; }
   }
 </style>
 <script>
 (() => {
   if (!matchMedia('(min-width: 761px)').matches) return;
   const intro = document.querySelector('[data-project="screenager"] .intro'); if (!intro) return;
-  const dl = intro.querySelector('.intro-facts'), kids = [...dl.children];
-  const at = kids.findIndex(e => e.tagName === 'DT' && e.textContent.trim() === 'Problem'); if (at < 0) return;
-  const more = document.createElement('dl'); more.className = 'intro-facts intro-after';
-  kids.slice(at).forEach(e => more.appendChild(e));
-  intro.appendChild(more);
-  const note = intro.querySelector('.intro-fig .intro-note'); if (note) intro.appendChild(note);
-  intro.classList.add('split');
-  const text = intro.querySelector('.intro-text'), title = intro.querySelector('.intro-title');
-  // the picture is as tall as the title + facts beside it (a few passes, since its width changes the text wrap)
+  const dl = intro.querySelector('.intro-facts'), zoom = intro.querySelector('.intro-fig .zoom');
+  intro.classList.add('fitted');
+  // picture sized so picture + caption + sentence are as tall as the text beside it (the picture fills its half of the row);
+  // a few passes, since its width changes the text wrap
   const fit = () => {
-    for (let i = 0; i < 4; i++) {
-      const h = dl.getBoundingClientRect().bottom - intro.querySelector('.intro-fig .zoom').getBoundingClientRect().top;
-      intro.style.setProperty('--pic-h', Math.max(160, Math.round(h)) + 'px');
+    for (let i = 0; i < 5; i++) {
+      const w = zoom.getBoundingClientRect().width, maxH = w * 1.1, minH = w * 0.55;   /* the whole still always shows (black box around it) */
+      const last = (intro.querySelector('.intro-fig .intro-note') || zoom).getBoundingClientRect(), z = zoom.getBoundingClientRect();
+      const h = Math.min(maxH, dl.getBoundingClientRect().bottom - z.top - (last.bottom - z.bottom));   /* picture + caption + sentence end level with the last fact */
+      intro.style.setProperty('--pic-h', Math.max(minH, Math.round(h)) + 'px');
     }
   };
-  text.style.justifyContent = 'flex-start';
   fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit);
 })();
 </script>
@@ -237,8 +236,8 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
   addEventListener('scroll', barP, { passive: true }); addEventListener('resize', barP); barP();
   if (tocItems.length) { addEventListener('scroll', markToc, { passive: true }); addEventListener('resize', markToc); markToc(); }
 </script>
-<script src="../menu.js?v=1795774529" defer></script>
-<script src="../phone.js?v=1795774529" defer></script>
-<script src="../dividers.js?v=1795774529" defer></script>
+<script src="../menu.js?v=1795774956" defer></script>
+<script src="../phone.js?v=1795774956" defer></script>
+<script src="../dividers.js?v=1795774956" defer></script>
 </body>
 </html>
