@@ -2047,3 +2047,6 @@ template.phone-part { display: none; }
 .cv-dialog .cv.cv-2col > .cv-col-fill .kv, .cv-dialog .cv.cv-2col > .cv-col-fill .small-kv { line-height: var(--cv-lh, 1.45); row-gap: var(--cv-rg, 8px); }
 .cv-dialog .cv.cv-2col > .cv-col-fill .entry { line-height: var(--cv-lh, 1.45); margin-bottom: var(--cv-rg, 8px); }
 .doll .form { z-index: 1; }
+/* the mannequin's three wheels, drawn like the rest of it */
+.doll .form .caster { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.doll .form .caster-hub { fill: var(--ink); stroke: none; }
