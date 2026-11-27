@@ -1958,3 +1958,15 @@ template.phone-part { display: none; }
 .about .letter .letter-body .place, .about .letter .letter-body .place-hit { line-height: 0; }
 .about .letter .letter-body .place-name { height: 1.3em !important; vertical-align: -0.28em !important; }
 .about .letter .tc-name.boil, .about .letter .tc-kicker-hand.boil { filter: url(#name-boil); }   /* the big name visibly wobbles, like the name in the top bar */
+/* letter text: black, a touch heavier, and drawn as large as the site's sans (Garamond's small letters otherwise read tiny) */
+.about .letter .letter-body { color: #000; font-weight: 500; font-size-adjust: 0.5; }
+.about .letter .letter-body { --lh: 1.5em; }
+/* one empty line between the name and the letter */
+.about .letter .title-card { margin-bottom: 1.6em !important; }
+@media (min-width: 861px) { .about .letter .title-card { margin-bottom: 30px !important; } }
+/* letter as centred blocks: each paragraph justified (straight edges both sides), last line centred, column centred in the frame */
+.about .letter .letter-body, .about .letter .letter-body p { text-align: justify !important; text-align-last: center; hyphens: auto; -webkit-hyphens: auto; }
+@media (min-width: 861px) { .about .letter .letter-body { max-width: 34em !important; margin: 0 auto !important; } }
+.about .letter .contact { justify-content: center !important; }
+.about .letter .letter-body .place-name { height: 1.5em !important; vertical-align: -0.36em !important; }
+@media (max-width: 860px) { .about .letter .letter-body, .about .letter .letter-body p { text-align: center !important; text-align-last: center; hyphens: manual; -webkit-hyphens: manual; } }
