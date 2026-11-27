@@ -2056,3 +2056,11 @@ template.phone-part { display: none; }
 .board.swapped .namecard { left: 0; top: 0; translate: none; transform-origin: 0 0; }
 .board.swapped .legend { left: 0; top: auto; bottom: 0; translate: none; transform-origin: 0 100%; }
 .board.swapped .legend h2 { margin-top: 0; }
+/* phones: every place's badge sits as a small pin right at the end of its name, always visible */
+@media (max-width: 860px) {
+  .about .letter .letter-hand-wrap.for-phone .place .sticker {
+    opacity: 1 !important; width: 30px !important; left: 100% !important; bottom: auto !important; top: 0 !important;
+    margin: 0 !important; top: 50% !important; transform: translate(0, -58%) rotate(8deg) !important; transition: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));
+  }
+  .about .letter .letter-hand-wrap.for-phone .place.show .sticker { transform: translate(0, -58%) scale(1.8) rotate(0deg) !important; z-index: 6; }
+}
