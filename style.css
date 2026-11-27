@@ -2073,6 +2073,7 @@ html:not(.laid-out) .about-intro { opacity: 0; }
 html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
 /* home: the name card a bit larger */
 .board.swapped .namecard { scale: calc(var(--s, 1) * 1.22); }
+.board.swapped .legend { scale: calc(var(--s, 1) * 1.12); }   /* Common threads a little bigger */
 /* phones: the letter fits one screen */
 @media (max-width: 860px) {
   .title-card .tc-name { width: min(260px, 74%) !important; }
