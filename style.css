@@ -1970,3 +1970,25 @@ template.phone-part { display: none; }
 .about .letter .contact { justify-content: center !important; }
 .about .letter .letter-body .place-name { height: 1.5em !important; vertical-align: -0.36em !important; }
 @media (max-width: 860px) { .about .letter .letter-body, .about .letter .letter-body p { text-align: center !important; text-align-last: center; hyphens: manual; -webkit-hyphens: manual; } }
+/* desktop: the whole letter handwritten, centred lines, place names underlined (typed version stays for phones) */
+.about .letter .letter-hand-wrap { display: none; }
+@media (min-width: 861px) {
+  .about .letter .letter-hand-wrap { display: block; position: relative; margin: 0 auto; width: 100%; }
+  .about .letter .letter-hand-wrap .letter-hand { display: block; width: 100%; height: auto; overflow: visible; }
+  .about .letter .letter-hand path { stroke-dashoffset: 0 !important; animation: none !important; stroke-width: 1.5; }
+  .about .letter .letter-hand path.ul { stroke-width: 1.1; }
+  .about .letter .letter-hand-wrap .place { position: absolute; display: block; }
+  .about .letter .letter-hand-wrap .place-hit { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .about .letter .letter-body { display: none !important; }
+}
+/* handwritten short letter everywhere: wide lines on computers, short lines on phones; the typed letter is retired */
+.about .letter .letter-body { display: none !important; }
+.about .letter .letter-hand-set { width: 100%; }
+.about .letter .letter-hand-wrap { display: none; position: relative; margin: 0 auto; width: 100%; }
+.about .letter .letter-hand-wrap .letter-hand { display: block; width: 100%; height: auto; overflow: visible; }
+.about .letter .letter-hand path { stroke-dashoffset: 0 !important; animation: none !important; stroke-width: 1.6; }
+.about .letter .letter-hand path.ul { stroke-width: 1.1; }
+.about .letter .letter-hand-wrap .place { position: absolute; display: block; }
+.about .letter .letter-hand-wrap .place-hit { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; }
+@media (min-width: 861px) { .about .letter .letter-hand-wrap.for-desk { display: block; } }
+@media (max-width: 860px) { .about .letter .letter-hand-wrap.for-phone { display: block; } }
