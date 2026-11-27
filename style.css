@@ -1802,3 +1802,5 @@ template.phone-part { display: none; }
 .intro-facts .gap { margin-top: calc(28px * var(--k, 1)); }
 @media (max-width: 760px) { .intro-facts .gap { margin-top: 14px; } }
 @media (min-width: 761px) { [data-project="tone-notation"] .intro-facts dt, [data-project="tone-notation"] .intro-facts dd { padding: calc(11.4px * var(--k, 1)) 0; } }
+/* desktop About: the dress-up stays at the right whatever the letter's width */
+@media (min-width: 861px) { .about-intro { grid-template-columns: minmax(0, 1fr) var(--dw) !important; } }
