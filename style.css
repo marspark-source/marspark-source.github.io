@@ -2015,3 +2015,8 @@ template.phone-part { display: none; }
 @media (hover: none) { .doll .hint-card .for-touch { display: block; } .doll .hint-card .for-mouse { display: none; } }
 @media (max-width: 860px) { .doll .stage .doll-hint { width: min(220px, 64%) !important; left: 50% !important; transform: translate(-50%, calc(-100% - 14px)); top: 0 !important; } .doll .hint-card { padding: 12px 12px; } .about-intro .doll { margin-top: 190px !important; } }
 .icon-btn.open-cv svg { width: 62px; }
+/* letter and dress-up share the page's width evenly: equal space left, between and right */
+@media (min-width: 861px) {
+  .about { padding-left: 0 !important; padding-right: 0 !important; }
+  .about-intro { justify-content: space-evenly !important; column-gap: 0 !important; }
+}
