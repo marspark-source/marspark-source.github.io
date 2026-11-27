@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Pin: a winking face, ^_~">
   <defs><clipPath id="c-bay"><circle cx="80" cy="80" r="75"/></clipPath></defs>
   <circle cx="80" cy="82.5" r="75" fill="#000" opacity=".13"/>
-  <g transform="rotate(-6 80 80)">
+  <g transform="rotate(0 80 80)">
     <circle cx="80" cy="80" r="75" fill="#ffffff"/>
     <g clip-path="url(#c-bay)">
       <g fill="none" stroke="#111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M40,68 L54,52 L68,68"/>
-        <path d="M88,64 C94,54 100,54 105,61 C110,68 116,68 122,58"/>
-        <path d="M60,104 L100,104"/>
+        <path d="M40,74 L55,58 L70,74"/>
+        <path d="M90,66 C95,57 100,57 105,66 C110,75 115,75 120,66"/>
+        <path d="M66,98 L94,98"/>
       </g>
     </g>
     <circle cx="80" cy="80" r="74.5" fill="none" stroke="#000" stroke-opacity=".18"/>

@@ -1999,3 +1999,8 @@ template.phone-part { display: none; }
   .about-intro { grid-template-columns: minmax(0, 560px) minmax(0, 1fr) !important; }
   .about-intro .doll { justify-self: end; }
 }
+/* dress-up sits close beside the letter (no wide empty gap) */
+@media (min-width: 861px) {
+  .about-intro { grid-template-columns: minmax(0, 560px) auto !important; justify-content: start !important; column-gap: clamp(48px, 5vw, 88px) !important; }
+  .about-intro .doll { justify-self: start; }
+}
