@@ -1869,13 +1869,14 @@ template.phone-part { display: none; }
 
 /* ---------- About: on a computer the badge becomes the mouse pointer over each place name ---------- */
 .letter .letter-body .place-hit { cursor: pointer; }
-.letter .place-hit[aria-describedby="st-pnw"] { cursor: url("assets/stickers/cursor/pnw.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/pnw.png") 1x, url("assets/stickers/cursor/pnw@2x.png") 2x) 32 32, pointer; }
-.letter .place-hit[aria-describedby="st-nyu"] { cursor: url("assets/stickers/cursor/nyu.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/nyu.png") 1x, url("assets/stickers/cursor/nyu@2x.png") 2x) 32 32, pointer; }
-.letter .place-hit[aria-describedby="st-ciid"] { cursor: url("assets/stickers/cursor/ciid.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/ciid.png") 1x, url("assets/stickers/cursor/ciid@2x.png") 2x) 32 32, pointer; }
-.letter .place-hit[aria-describedby="st-bergamo"] { cursor: url("assets/stickers/cursor/bergamo.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/bergamo.png") 1x, url("assets/stickers/cursor/bergamo@2x.png") 2x) 32 32, pointer; }
-.letter .place-hit[aria-describedby="st-bay"] { cursor: url("assets/stickers/cursor/bay.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/bay.png") 1x, url("assets/stickers/cursor/bay@2x.png") 2x) 32 32, pointer; }
 @media (hover: hover) and (pointer: fine) {
   /* the pointer is the badge, so no pop-up for the mouse; keyboard users still get it on focus */
   .letter .place:hover .sticker, .letter .place:focus-within .sticker { opacity: 0; transform: translate(-50%, 8px) scale(.85) rotate(-6deg); }
   .letter .place .place-hit:focus-visible ~ .sticker { opacity: 1; transform: translate(-50%, 0) scale(1) rotate(0deg); }
 }
+
+/* ---------- About: with a mouse, the badge follows the pointer over each place name (drawn by the page, so every browser shows it) ---------- */
+.badge-follow { position: fixed; left: 0; top: 0; width: 100px; height: 100px; margin: -50px 0 0 -50px; pointer-events: none; z-index: 2000;
+  opacity: 0; transform: scale(.6) rotate(-10deg); transition: opacity .15s ease, transform .22s cubic-bezier(.3,1.6,.6,1); filter: drop-shadow(0 3px 4px rgba(0,0,0,.2)); }
+.badge-follow.on { opacity: 1; transform: scale(1) rotate(0deg); }
+@media (hover: hover) and (pointer: fine) { .letter .letter-body .place-hit { cursor: none; } }
