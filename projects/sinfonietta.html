@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* touch screens: phones always get the phone layout (sideways it is just wider); tablets upright get the phone layout, sideways the computer one */
+(()=>{const m=document.querySelector('meta[name=viewport]');if(!m||!matchMedia('(pointer: coarse)').matches)return;
+const pick=()=>{const a=screen.width,b=screen.height,w=matchMedia('(orientation: landscape)').matches?Math.max(a,b):Math.min(a,b);return w>760&&w<1000?'width=760':'width=device-width, initial-scale=1'};
+const phone=c=>c==='width=760'||Math.min(screen.width,screen.height)<=760&&!(matchMedia('(orientation: landscape)').matches&&Math.max(screen.width,screen.height)>=1000);
+let cur=pick();m.content=cur;const was=phone(cur);
+matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pick();if(n===cur)return;cur=n;m.content=n;if(phone(n)!==was)location.reload();});})();</script>
 <title>Sinfonietta — Ella Grace Park</title>
 <meta name="description" content="Sinfonietta: An instrument for remixing on the go. A project by Ella Grace Park.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +24,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../style.css?v=1795704782">
+<link rel="stylesheet" href="../style.css?v=1795771873">
 </head>
 <body class="project">
 
@@ -404,8 +410,8 @@
   addEventListener('scroll', barP, { passive: true }); addEventListener('resize', barP); barP();
   if (tocItems.length) { addEventListener('scroll', markToc, { passive: true }); addEventListener('resize', markToc); markToc(); }
 </script>
-<script src="../menu.js?v=1795704782" defer></script>
-<script src="../phone.js?v=1795704782" defer></script>
-<script src="../dividers.js?v=1795704782" defer></script>
+<script src="../menu.js?v=1795771873" defer></script>
+<script src="../phone.js?v=1795771873" defer></script>
+<script src="../dividers.js?v=1795771873" defer></script>
 </body>
 </html>
