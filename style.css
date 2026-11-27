@@ -1796,3 +1796,5 @@ template.phone-part { display: none; }
 /* words that differ by screen: "click" on computers, "tap" on phones */
 .w-phone { display: none; }
 @media (max-width: 760px) { .w-desk { display: none; } .w-phone { display: inline; } }
+/* home board: each tagline stays on one line */
+.board .proj .what { white-space: nowrap; }
