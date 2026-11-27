@@ -2096,3 +2096,5 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
 @media (max-width: 860px) { .about .letter .letter-hand-wrap.for-phone { margin-left: auto; margin-right: auto; } }
 /* home: Screenager's title lines up with its tagline (the hover arrow no longer takes up room) */
 .board .proj[data-id="screenager"] .label .arrow { position: absolute; left: 100%; margin-left: .3em; top: 0; }
+/* CV: within a row, the date/label and its text share one baseline (rows line up across columns by baseline, see about.html) */
+.cv-dialog .cv-col .entry, .cv-dialog .cv-col .kv, .cv-dialog .cv-col .small-kv { align-items: baseline; }
