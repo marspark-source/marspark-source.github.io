@@ -1,13 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Pin: CIID">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Pin: Prototype everything">
   <defs><clipPath id="c-ciid"><circle cx="80" cy="80" r="74"/></clipPath></defs>
   <circle cx="80" cy="82" r="75" fill="#000" opacity=".12"/>
   <g transform="rotate(-5 80 80)">
     <circle cx="80" cy="80" r="75" fill="#f4f1ea"/>
     <g clip-path="url(#c-ciid)">
       <rect width="160" height="160" fill="#1f1f1f"/>
-      <rect x="0" y="0" width="160" height="56" fill="#ff5a36"/>
-      <text x="80" y="104" text-anchor="middle" font-family="'Helvetica Neue','Arial Black',Arial,sans-serif" font-weight="900" font-size="46" fill="#ffffff" letter-spacing="1">CIID</text>
-      <rect x="40" y="118" width="80" height="6" rx="3" fill="#ff5a36"/>
+      <rect x="0" y="0" width="160" height="40" fill="#ff5a36"/>
+      <rect x="0" y="120" width="160" height="40" fill="#ff5a36"/>
+      <text x="80" y="78" text-anchor="middle" font-family="'Helvetica Neue','Arial Black',Arial,sans-serif" font-weight="900" font-size="19" fill="#ffffff" letter-spacing="0.5">PROTOTYPE</text>
+      <text x="80" y="104" text-anchor="middle" font-family="'Helvetica Neue','Arial Black',Arial,sans-serif" font-weight="900" font-size="17" fill="#ff5a36" letter-spacing="0.5">EVERYTHING</text>
     </g>
     <circle cx="80" cy="80" r="74.5" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="1"/>
   </g>
