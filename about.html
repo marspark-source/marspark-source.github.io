@@ -24,7 +24,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795775776">
+<link rel="stylesheet" href="style.css?v=1795775850">
 </head>
 <body>
 
@@ -514,7 +514,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
       if (si < svgs.length - 1) t += 0.5;              // between greeting, sentence and sign-off
     });
     svgs.forEach(svg => svg.classList.add('go'));
-    document.querySelector('.contact')?.style.setProperty('--contact-delay', (t + 0.1) + 's');
+    document.querySelector('.contact')?.style.setProperty('--contact-delay', '0.6s');   // icons show as the greeting starts
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
       setTimeout(() => svgs.forEach(svg => svg.classList.add('boil')), (t + 0.2) * 1000);
   })();
@@ -682,8 +682,8 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795775776" defer></script>
-<script src="dividers.js?v=1795775776" defer></script>
+<script src="menu.js?v=1795775850" defer></script>
+<script src="dividers.js?v=1795775850" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {
