@@ -24,7 +24,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795779915">
+<link rel="stylesheet" href="style.css?v=1795780123">
 </head>
 <body>
 
@@ -969,8 +969,8 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795779915" defer></script>
-<script src="dividers.js?v=1795779915" defer></script>
+<script src="menu.js?v=1795780123" defer></script>
+<script src="dividers.js?v=1795780123" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {
@@ -982,10 +982,28 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
   })();
 </script>
 <script>
-  // places in the letter: hover or focus shows a little sticker; on touch, tap to show / tap again to hide
+  // stamps never hang off the page: nudge each one sideways so it stays inside the window
+  const keepIn = () => document.querySelectorAll('.letter .place').forEach(p => {
+    const st = p.querySelector('.sticker'); st.style.setProperty('--nudge', '0px');
+    const pr = p.getBoundingClientRect(), w = st.offsetWidth, cx = pr.left + pr.width / 2, pad = 12;
+    const left = cx - w / 2, right = cx + w / 2, vw = document.documentElement.clientWidth;
+    st.style.setProperty('--nudge', (left < pad ? pad - left : right > vw - pad ? vw - pad - right : 0) + 'px');
+  });
+  addEventListener('load', keepIn); addEventListener('resize', keepIn);
+  // no room above the name (top bar or window edge)? show the stamp below it instead
+  const flip = p => {
+    const st = p.querySelector('.sticker'), bar = document.querySelector('.topbar');
+    const top = Math.max(0, bar ? bar.getBoundingClientRect().bottom : 0) + 8;
+    p.classList.toggle('below', p.getBoundingClientRect().top - st.offsetHeight - 6 < top);
+  };
+  document.querySelectorAll('.letter .place').forEach(p => {
+    p.addEventListener('pointerenter', () => flip(p)); p.addEventListener('focusin', () => flip(p));
+  });
+  // places in the letter: hover or focus shows a little stamp; on touch, tap to show / tap again to hide
   document.querySelectorAll('.letter .place-hit').forEach(btn => btn.addEventListener('click', () => {
     const p = btn.parentElement, on = !p.classList.contains('show');
     document.querySelectorAll('.letter .place.show').forEach(x => x.classList.remove('show'));
+    flip(p);
     p.classList.toggle('show', on);
   }));
 </script>
