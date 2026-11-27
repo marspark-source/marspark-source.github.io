@@ -2023,3 +2023,13 @@ template.phone-part { display: none; }
 /* the CV sheet scales to fit the window (no scrolling) */
 .cv-dialog.cv-fitting > * { zoom: var(--cv-z, 1); }
 .cv-dialog { overflow: hidden !important; }
+/* a single pen line for the floor under the mannequin and the item box (right side only) */
+.doll .doll-floor { position: absolute; left: -2%; right: -2%; width: 104%; top: calc(100% * 600 / 602); height: 6px; overflow: visible; pointer-events: none; z-index: 0; filter: url(#line-boil); }
+.doll .doll-floor path { fill: none; stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+/* the mannequin side of the dress-up shifts so mannequin + arrows sit centred in the left half */
+@media (min-width: 861px) {
+  .doll .form, .doll .piece:not(.in-tray), .doll .piece-label:not(.in-tray) { translate: var(--dollx, 0px) 0; }
+  .doll .outfit-bar { width: 50% !important; translate: 0 0; justify-content: space-between; }
+}
+.doll .doll-floor { top: auto; }
+@media (min-width: 861px) { .doll .tray.box, .doll .piece.in-tray, .doll .piece-label.in-tray { translate: var(--boxx, 0px) 0; } }
