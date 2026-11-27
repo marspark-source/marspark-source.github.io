@@ -1780,3 +1780,5 @@ template.phone-part { display: none; }
 
 /* desktop About: mannequin + box sit a little further right */
 @media (min-width: 861px) { .about-intro .doll { translate: 32px 0; } }
+/* phones: Tone Notation's main picture shown whole (no crop) */
+@media (max-width: 760px) { [data-project="tone-notation"] .intro .intro-fig .zoom img { object-fit: contain !important; object-position: right center !important; } }
