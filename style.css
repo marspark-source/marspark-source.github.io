@@ -2068,3 +2068,6 @@ template.phone-part { display: none; }
 .doll .piece-label .hand path.halo { stroke-width: 2.2 !important; }
 /* the connecting lines may run past the old map area (the map now sits on the right) */
 .board .links { overflow: visible; }
+/* About: the content fades in once laid out */
+html:not(.laid-out) .about-intro { opacity: 0; }
+html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
