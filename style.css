@@ -1855,3 +1855,14 @@ template.phone-part { display: none; }
 .letter .letter-body .place-name path.ul { stroke-width: 3.6; }
 @media (max-width: 860px) { .letter .letter-body { font-size: 16px; line-height: 1.7; } .letter .hand-hello { width: min(260px, 72%); } }
 .letter .sticker { filter: drop-shadow(0 3px 4px rgba(0,0,0,.18)); }
+
+/* ---------- About (desktop): two even columns. Letter from the left page edge (under the name),
+   dress-up to the right page edge (under "About"); tops and bottoms line up ---------- */
+@media (min-width: 861px) {
+  .about { padding: 0 72px !important; min-height: calc(100svh - 72px); display: flex; align-items: center; }
+  .about-intro { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; column-gap: 64px !important; width: 100%; align-items: center !important; justify-content: stretch !important; padding: 20px 0 !important; }
+  .about .letter { padding-left: 0 !important; width: auto !important; display: flex; flex-direction: column; }
+  .about .letter .letter-art { margin-top: 0 !important; }
+  .about .letter .contact { margin-top: auto; padding-top: 12px; }
+  .about-intro .doll { justify-self: end; width: min(var(--dw), 100%) !important; translate: none !important; margin: 0 !important; }
+}
