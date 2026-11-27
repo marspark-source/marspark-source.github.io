@@ -1898,3 +1898,31 @@ template.phone-part { display: none; }
   .doll .stage .doll-hint { position: absolute; top: auto; margin: 0; text-align: left !important; }
   .doll .stage .doll-hint .hint-arrow { display: none; }
 }
+
+/* ---------- About letter as an old Hollywood title card: kicker, big name, deco rule, letter centred underneath ---------- */
+.about .letter { text-align: center; align-items: center; }
+.about .letter .letter-art { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.title-card { display: flex; flex-direction: column; align-items: center; margin: 0 0 clamp(14px, 2.2vh, 26px); }
+.title-card .tc-kicker { margin: 0 0 6px; font-size: 13px; letter-spacing: .32em; text-transform: uppercase; color: var(--ink); }
+.title-card .tc-name { width: min(440px, 88%); height: auto; margin: 0; }
+.title-card .tc-name path { stroke-width: 2.4; }
+.title-card .tc-rule { display: flex; align-items: center; gap: 12px; width: min(300px, 70%); margin-top: 12px; }
+.title-card .tc-rule span { flex: 1; height: 0; border-top: 1px solid var(--ink); }
+.title-card .tc-rule i { width: 7px; height: 7px; background: var(--ink); transform: rotate(45deg); }
+.about .letter .letter-body { text-align: center; }
+.about .letter .letter-body p { text-wrap: balance; }
+.about .letter .contact { justify-content: center; display: flex; gap: 10px; }
+@media (max-width: 860px) { .title-card .tc-name { width: min(320px, 90%); } .title-card .tc-kicker { font-size: 11px; } }
+.about .letter .title-card .tc-name { width: min(430px, 86%); }
+.about .letter .letter-body p { text-wrap: wrap; }
+@media (min-width: 861px) { .doll .stage .doll-hint { text-align: right !important; } }
+.about .letter .title-card { align-self: stretch; width: 100%; }
+
+/* ---------- About letter in a carved frame (drawn by the page at the column's size) ---------- */
+.about .letter { position: relative; padding: var(--frame-top, 80px) var(--frame-side, 54px) 46px !important; box-sizing: border-box; }
+.about .letter .letter-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+.about .letter > *:not(.letter-frame) { position: relative; z-index: 1; }
+.about .letter .contact { padding-top: 6px; margin-bottom: 0; }
+@media (max-width: 860px) { .about .letter { padding-bottom: 54px !important; } }
+.letter .letter-body .nw { white-space: nowrap; }
+@media (max-width: 860px) { .letter .letter-body .place-name { height: 1.4em; vertical-align: -0.34em; } .letter .letter-body .nw { white-space: normal; } }
