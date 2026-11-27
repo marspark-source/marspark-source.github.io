@@ -2020,3 +2020,6 @@ template.phone-part { display: none; }
   .about { padding-left: 0 !important; padding-right: 0 !important; }
   .about-intro { justify-content: space-evenly !important; column-gap: 0 !important; }
 }
+/* the CV sheet scales to fit the window (no scrolling) */
+.cv-dialog.cv-fitting > * { zoom: var(--cv-z, 1); }
+.cv-dialog { overflow: hidden !important; }
