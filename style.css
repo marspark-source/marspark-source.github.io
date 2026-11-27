@@ -1919,10 +1919,13 @@ template.phone-part { display: none; }
 .about .letter .title-card { align-self: stretch; width: 100%; }
 
 /* ---------- About letter in a carved frame (drawn by the page at the column's size) ---------- */
-.about .letter { position: relative; padding: var(--frame-top, 80px) var(--frame-side, 54px) 46px !important; box-sizing: border-box; }
+.about .letter { position: relative; padding: var(--frame-top, 70px) var(--frame-side, 46px) 24px !important; box-sizing: border-box; }
 .about .letter .letter-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
 .about .letter > *:not(.letter-frame) { position: relative; z-index: 1; }
 .about .letter .contact { padding-top: 6px; margin-bottom: 0; }
-@media (max-width: 860px) { .about .letter { padding-bottom: 54px !important; } }
+@media (max-width: 860px) { .about .letter { padding-bottom: 28px !important; } }
 .letter .letter-body .nw { white-space: nowrap; }
 @media (max-width: 860px) { .letter .letter-body .place-name { height: 1.4em; vertical-align: -0.34em; } .letter .letter-body .nw { white-space: normal; } }
+.about .letter .letter-frame { filter: url(#line-boil); }   /* same hand-drawn wobble as the mannequin */
+.title-card .tc-kicker-hand { display: block; width: min(190px, 46%); height: auto; margin: 0 0 2px; }
+.title-card .tc-kicker-hand.boil { filter: url(#letter-boil); }
