@@ -1933,3 +1933,16 @@ template.phone-part { display: none; }
 .about .letter { text-align: left; align-items: stretch; }
 .about .letter .letter-body, .about .letter .letter-body p { text-align: left; }
 .about .letter .contact { justify-content: flex-start; }
+/* the letter sits in the middle of its frame: a comfortable column, centred, with the icons right under it */
+@media (min-width: 861px) {
+  .about .letter { justify-content: center; }
+  .about .letter .letter-art { flex: 0 0 auto; }
+  .about .letter .letter-body { max-width: 30em; margin: 0 auto; }
+  .about .letter .contact { margin-top: 10px !important; padding-top: 0; width: 100%; max-width: 30em; margin-left: auto; margin-right: auto; }
+}
+.about .letter .letter-body p { margin-bottom: .8em; }
+@media (min-width: 861px) {
+  .about .letter .letter-body, .about .letter .contact { max-width: 100%; }
+  .about .letter .letter-body p { margin-bottom: .55em; line-height: 1.6; }
+  .about .letter .title-card { margin-bottom: 10px; }
+}
