@@ -1946,3 +1946,15 @@ template.phone-part { display: none; }
   .about .letter .letter-body p { margin-bottom: .55em; line-height: 1.6; }
   .about .letter .title-card { margin-bottom: 10px; }
 }
+/* the letter set like an old title card: a classic book serif under the handwritten name */
+.about .letter .letter-body { font-family: "EB Garamond", "Garamond", "Times New Roman", serif; color: #1a1a1a; letter-spacing: .005em; }
+.about .letter .letter-body p { line-height: 1.5; }
+@media (max-width: 860px) { .about .letter .letter-body { font-size: 18.5px; } }
+/* every line of the letter sits on the same fixed pitch (like ruled paper); handwritten names never push a line,
+   and each paragraph break is exactly one empty line */
+.about .letter .letter-body { --lh: 1.55em; }
+.about .letter .letter-body p { line-height: var(--lh); margin: 0 0 var(--lh) !important; }
+.about .letter .letter-body p:last-child { margin-bottom: 0 !important; }
+.about .letter .letter-body .place, .about .letter .letter-body .place-hit { line-height: 0; }
+.about .letter .letter-body .place-name { height: 1.3em !important; vertical-align: -0.28em !important; }
+.about .letter .tc-name.boil, .about .letter .tc-kicker-hand.boil { filter: url(#name-boil); }   /* the big name visibly wobbles, like the name in the top bar */
