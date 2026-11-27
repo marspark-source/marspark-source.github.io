@@ -84,7 +84,16 @@
       intro.style.setProperty('--pic-h', Math.max(minH, Math.round(h)) + 'px');
     }
   };
-  fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit);
+  // never taller than the window: if the opening runs past the bottom, everything in it shrinks a little
+  const base = parseFloat(getComputedStyle(intro).getPropertyValue('--k')) || 1;
+  const fitWindow = () => {
+    let k = intro.clientWidth / 1152;   // the page's own scale for this window (same as the other sections)
+    intro.style.setProperty('--k', k); fit();
+    for (let i = 0; i < 30 && intro.getBoundingClientRect().bottom + scrollY > innerHeight - 20 && k > .55; i++) {
+      k *= .97; intro.style.setProperty('--k', k); fit();
+    }
+  };
+  fitWindow(); addEventListener('resize', fitWindow); document.fonts && document.fonts.ready.then(fitWindow);
 })();
 </script>
 <!--video:1|Film-->
