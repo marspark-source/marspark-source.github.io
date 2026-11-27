@@ -2041,7 +2041,7 @@ template.phone-part { display: none; }
 .doll .doll-floor { z-index: 0 !important; }
 .doll .tray.box { z-index: 2 !important; }
 .doll .piece.in-tray { z-index: 3 !important; }
-.doll .piece-label.in-tray { z-index: 2 !important; }   /* the name's soft white fade sits behind the item, not over it */
+.doll .piece-label.in-tray { z-index: 4 !important; }
 /* CV right column: no big gaps between sections; instead a little more room between lines, so it fills naturally */
 .cv-dialog .cv.cv-2col > .cv-col-fill { justify-content: flex-start !important; }
 .cv-dialog .cv.cv-2col > .cv-col-fill .kv, .cv-dialog .cv.cv-2col > .cv-col-fill .small-kv { line-height: var(--cv-lh, 1.45); row-gap: var(--cv-rg, 8px); }
@@ -2064,8 +2064,6 @@ template.phone-part { display: none; }
   }
   .about .letter .letter-hand-wrap.for-phone .place.show .sticker { transform: translate(0, -58%) scale(1.8) rotate(0deg) !important; z-index: 6; }
 }
-/* item names: a thin white edge only, so it no longer covers the items */
-.doll .piece-label .hand path.halo { stroke-width: 2.2 !important; }
 /* the connecting lines may run past the old map area (the map now sits on the right) */
 .board .links { overflow: visible; }
 /* About: the content fades in once laid out */
