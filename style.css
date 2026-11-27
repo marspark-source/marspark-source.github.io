@@ -2033,3 +2033,8 @@ template.phone-part { display: none; }
 }
 .doll .doll-floor { top: auto; }
 @media (min-width: 861px) { .doll .tray.box, .doll .piece.in-tray, .doll .piece-label.in-tray { translate: var(--boxx, 0px) 0; } }
+/* CV: two explicit columns; the right column spreads its sections so both columns end on the same line */
+.cv-dialog .cv.cv-2col { display: grid !important; grid-template-columns: 1fr 1fr; column-gap: 32px; column-count: auto; }
+.cv-dialog .cv.cv-2col > .cv-col { display: flex !important; flex-direction: column; }
+.cv-dialog .cv.cv-2col > .cv-col-fill { justify-content: space-between; }
+@media (max-width: 640px) { .cv-dialog .cv.cv-2col { grid-template-columns: 1fr; } .cv-dialog .cv.cv-2col > .cv-col-fill { justify-content: flex-start; } }
