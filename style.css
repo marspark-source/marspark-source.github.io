@@ -2073,3 +2073,16 @@ html:not(.laid-out) .about-intro { opacity: 0; }
 html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
 /* home: the name card a bit larger */
 .board.swapped .namecard { scale: calc(var(--s, 1) * 1.22); }
+/* phones: the letter fits one screen */
+@media (max-width: 860px) {
+  .title-card .tc-name { width: min(260px, 74%) !important; }
+  .title-card .tc-kicker-hand { width: min(150px, 42%); }
+  .about .letter .title-card { margin-bottom: 14px !important; }
+}
+@media (max-width: 860px) {
+  .about .letter { padding-bottom: 18px !important; }
+  .about .letter .contact { margin-top: 2px !important; padding-top: 0 !important; }
+  .about .letter .icon-btn svg { width: 34px; }
+  .about .letter .icon-btn.open-cv svg { width: 46px; }
+}
+@media (max-width: 860px) { .about { padding-top: 12px !important; } }
