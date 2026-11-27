@@ -2051,3 +2051,8 @@ template.phone-part { display: none; }
 .doll .form .caster .caster-fork { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
 .doll .form .caster .caster-wheel { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .doll .form .caster .wheel-hub { fill: var(--ink); stroke: none; }
+
+/* ---------- HOME (desktop): sides switched: name card top-left, key bottom-left, a slightly smaller map on the right ---------- */
+.board.swapped .namecard { left: 0; top: 0; translate: none; transform-origin: 0 0; }
+.board.swapped .legend { left: 0; top: auto; bottom: 0; translate: none; transform-origin: 0 100%; }
+.board.swapped .legend h2 { margin-top: 0; }
