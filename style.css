@@ -1793,3 +1793,6 @@ template.phone-part { display: none; }
 .board.is-pick .proj.hot .what { opacity: 1; filter: none; }
 /* CV: the year (and every label) sits on the same baseline as the first line of its content */
 .entry, .kv, .small-kv { align-items: baseline; }
+/* words that differ by screen: "click" on computers, "tap" on phones */
+.w-phone { display: none; }
+@media (max-width: 760px) { .w-desk { display: none; } .w-phone { display: inline; } }
