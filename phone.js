@@ -239,7 +239,7 @@
       const frag = t.content.cloneNode(true); frag.querySelectorAll('img[loading]').forEach(i => { i.loading = 'eager'; });
       let at = blocks.length;
       const last = blocks[blocks.length - 1];
-      const capRow = last && last.classList.contains('ph-text') ? [...last.children].find(r => r.querySelector('.v20')) : null;
+      const capRow = last && last.classList.contains('ph-text') ? [...last.children].reverse().find(r => r.querySelector('.v20')) /* the last big line is the closing caption */ : null;
       if (capRow) {
         if (last.children.length > 1) { const nb = document.createElement('div'); nb.className = 'ph-text'; nb.appendChild(capRow); blocks.push(nb); }
         at = blocks.length - 1;
