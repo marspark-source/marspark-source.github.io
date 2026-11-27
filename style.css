@@ -1866,3 +1866,16 @@ template.phone-part { display: none; }
   .about .letter .contact { margin-top: auto; padding-top: 12px; }
   .about-intro .doll { justify-self: end; width: min(var(--dw), 100%) !important; translate: none !important; margin: 0 !important; }
 }
+
+/* ---------- About: on a computer the badge becomes the mouse pointer over each place name ---------- */
+.letter .letter-body .place-hit { cursor: pointer; }
+.letter .place-hit[aria-describedby="st-pnw"] { cursor: url("assets/stickers/cursor/pnw.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/pnw.png") 1x, url("assets/stickers/cursor/pnw@2x.png") 2x) 32 32, pointer; }
+.letter .place-hit[aria-describedby="st-nyu"] { cursor: url("assets/stickers/cursor/nyu.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/nyu.png") 1x, url("assets/stickers/cursor/nyu@2x.png") 2x) 32 32, pointer; }
+.letter .place-hit[aria-describedby="st-ciid"] { cursor: url("assets/stickers/cursor/ciid.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/ciid.png") 1x, url("assets/stickers/cursor/ciid@2x.png") 2x) 32 32, pointer; }
+.letter .place-hit[aria-describedby="st-bergamo"] { cursor: url("assets/stickers/cursor/bergamo.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/bergamo.png") 1x, url("assets/stickers/cursor/bergamo@2x.png") 2x) 32 32, pointer; }
+.letter .place-hit[aria-describedby="st-bay"] { cursor: url("assets/stickers/cursor/bay.png") 32 32, pointer; cursor: -webkit-image-set(url("assets/stickers/cursor/bay.png") 1x, url("assets/stickers/cursor/bay@2x.png") 2x) 32 32, pointer; }
+@media (hover: hover) and (pointer: fine) {
+  /* the pointer is the badge, so no pop-up for the mouse; keyboard users still get it on focus */
+  .letter .place:hover .sticker, .letter .place:focus-within .sticker { opacity: 0; transform: translate(-50%, 8px) scale(.85) rotate(-6deg); }
+  .letter .place .place-hit:focus-visible ~ .sticker { opacity: 1; transform: translate(-50%, 0) scale(1) rotate(0deg); }
+}
