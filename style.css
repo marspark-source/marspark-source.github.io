@@ -1880,3 +1880,21 @@ template.phone-part { display: none; }
   opacity: 0; transform: scale(.6) rotate(-10deg); transition: opacity .15s ease, transform .22s cubic-bezier(.3,1.6,.6,1); filter: drop-shadow(0 3px 4px rgba(0,0,0,.2)); }
 .badge-follow.on { opacity: 1; transform: scale(1) rotate(0deg); }
 @media (hover: hover) and (pointer: fine) { .letter .letter-body .place-hit { cursor: none; } }
+
+/* ---------- About (desktop): letter and dress-up read as one page ----------
+   the dress-up sits right after the letter (no wide gap), the greeting and the mannequin start on one line,
+   the icons and the outfit arrows share the bottom line, and the hint is set like the letter's own text */
+@media (min-width: 861px) {
+  .about-intro { grid-template-columns: minmax(0, 1fr) auto !important; column-gap: clamp(40px, 4vw, 72px) !important; }
+  .about-intro .doll { justify-self: end; width: var(--dw) !important; }
+  .about .letter .letter-body { max-width: none; }
+  .doll .stage .doll-hint { font-size: var(--letter-fs, 17px) !important; line-height: 1.8; color: var(--ink); text-align: left; }
+}
+/* right-column heading in the same handwriting as the greeting (desktop only) */
+.doll .hand-title { display: none; }
+@media (min-width: 861px) {
+  .doll .hand-title { display: block; position: absolute; right: 0; width: auto; z-index: 1; overflow: visible; }
+  .doll .hand-title path { stroke-dashoffset: 0 !important; animation: none !important; }
+  .doll .stage .doll-hint { position: absolute; top: auto; margin: 0; text-align: left !important; }
+  .doll .stage .doll-hint .hint-arrow { display: none; }
+}
