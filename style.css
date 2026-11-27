@@ -2042,3 +2042,7 @@ template.phone-part { display: none; }
 .doll .tray.box { z-index: 2 !important; }
 .doll .piece.in-tray { z-index: 3 !important; }
 .doll .piece-label.in-tray { z-index: 4 !important; }
+/* CV right column: no big gaps between sections; instead a little more room between lines, so it fills naturally */
+.cv-dialog .cv.cv-2col > .cv-col-fill { justify-content: flex-start !important; }
+.cv-dialog .cv.cv-2col > .cv-col-fill .kv, .cv-dialog .cv.cv-2col > .cv-col-fill .small-kv { line-height: var(--cv-lh, 1.45); row-gap: var(--cv-rg, 8px); }
+.cv-dialog .cv.cv-2col > .cv-col-fill .entry { line-height: var(--cv-lh, 1.45); margin-bottom: var(--cv-rg, 8px); }
