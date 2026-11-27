@@ -2071,6 +2071,5 @@ template.phone-part { display: none; }
 /* About: the content fades in once laid out */
 html:not(.laid-out) .about-intro { opacity: 0; }
 html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
-/* home key: a thin double-line box, like the About title card */
-.board.swapped .legend { padding: 26px 30px 24px !important; }
-.board.swapped .legend::after { content: "" !important; position: absolute; inset: 0; border: 1.3px solid var(--ink); outline: .7px solid var(--ink); outline-offset: -5px; border-radius: 2px; pointer-events: none; filter: url(#line-boil); width: auto; height: auto; background: none; top: 0; }
+/* home: the name card a bit larger */
+.board.swapped .namecard { scale: calc(var(--s, 1) * 1.22); }
