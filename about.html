@@ -24,7 +24,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795775850">
+<link rel="stylesheet" href="style.css?v=1795775989">
 </head>
 <body>
 
@@ -510,7 +510,13 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
         p.style.animationDuration = d + 's'; p.style.animationDelay = t + 's';
         t += d + (PAUSE[p.dataset.p] || PAUSE.l);
       });
-      if (rest.length) { t += 0.3; rest.forEach(p => { p.style.animationDuration = '0.7s'; p.style.animationDelay = t + 's'; }); t += 0.7; }
+      if (rest.length) {
+        // the rest of the letter appears whole and fades in softly (no stroke drawing)
+        t += 0.3;
+        rest.forEach(p => { p.style.animation = 'none'; p.style.strokeDasharray = 'none'; p.style.strokeDashoffset = '0';
+          p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1100, delay: t * 1000, easing: 'ease', fill: 'backwards' }); });
+        t += 1.1;
+      }
       if (si < svgs.length - 1) t += 0.5;              // between greeting, sentence and sign-off
     });
     svgs.forEach(svg => svg.classList.add('go'));
@@ -682,8 +688,8 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795775850" defer></script>
-<script src="dividers.js?v=1795775850" defer></script>
+<script src="menu.js?v=1795775989" defer></script>
+<script src="dividers.js?v=1795775989" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {
