@@ -24,7 +24,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=1795772789">
+<link rel="stylesheet" href="style.css?v=1795772915">
 </head>
 <body>
 
@@ -490,7 +490,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 </dialog>
 
 <script>
-  // Hand-write the letter like a real pen: one letter at a time at a steady pen speed, each
+  // Hand-write the greeting like a real pen (the rest of the letter inks in at once): one letter at a time at a steady pen speed, each
   // stroke easing in and out, with short pauses between letters, longer ones between words,
   // a breath at each new line, then the stop-motion wobble once it is all written.
 
@@ -499,12 +499,18 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
     const PEN = 3800;                                  // drawing units per second (x-height is 41)
     const PAUSE = { l: 0.01, w: 0.06, n: 0.18 };       // after a letter / word / line
     let t = 0.6;
+    // Only the greeting (the first line) is written out stroke by stroke; the rest of the letter
+    // then inks in all at once.
     svgs.forEach((svg, si) => {
+      const rest = []; let greeted = false;           // the greeting ends at the first end-of-line stroke
       svg.querySelectorAll('path:not(.rule)').forEach(p => {
+        if (greeted) { rest.push(p); return; }
+        if (p.dataset.p === 'n') greeted = true;
         const d = Math.max(0.04, p.getTotalLength() / PEN);
         p.style.animationDuration = d + 's'; p.style.animationDelay = t + 's';
         t += d + (PAUSE[p.dataset.p] || PAUSE.l);
       });
+      if (rest.length) { t += 0.3; rest.forEach(p => { p.style.animationDuration = '0.7s'; p.style.animationDelay = t + 's'; }); t += 0.7; }
       if (si < svgs.length - 1) t += 0.5;              // between greeting, sentence and sign-off
     });
     svgs.forEach(svg => svg.classList.add('go'));
@@ -676,8 +682,8 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
     pieces.forEach(el => el.tagName === 'IMG' && !el.complete && el.addEventListener('load', () => placeLabel(el), { once: true }));
   })();
 </script>
-<script src="menu.js?v=1795772789" defer></script>
-<script src="dividers.js?v=1795772789" defer></script>
+<script src="menu.js?v=1795772915" defer></script>
+<script src="dividers.js?v=1795772915" defer></script>
 <script>
   // CV pop-up from the drawn document icon next to the email / LinkedIn icons.
   (() => {
