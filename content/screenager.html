@@ -52,6 +52,40 @@
   </figure>
 </section>
 
+<style>
+  /* computer: What/Date/Context/Overview beside the picture (the picture ends where the text ends);
+     Problem/Question/Concept full width underneath, then the closing sentence */
+  @media (min-width: 761px) {
+    [data-project="screenager"] .intro.split { padding-bottom: 0; row-gap: calc(64px * var(--k, 1)); }
+    [data-project="screenager"] .intro.split .intro-text { justify-content: space-between; }
+    [data-project="screenager"] .intro.split .intro-after { grid-column: 1 / -1; }
+    [data-project="screenager"] .intro.split .intro-fig .intro-note { position: static; width: auto; margin: 0; }
+    [data-project="screenager"] .intro.split > .intro-note { grid-column: 1 / -1; justify-self: end; width: calc(564px * var(--k, 1)); margin: 0; font-size: calc(20px * var(--k, 1)); line-height: 1.4; }
+  }
+</style>
+<script>
+(() => {
+  if (!matchMedia('(min-width: 761px)').matches) return;
+  const intro = document.querySelector('[data-project="screenager"] .intro'); if (!intro) return;
+  const dl = intro.querySelector('.intro-facts'), kids = [...dl.children];
+  const at = kids.findIndex(e => e.tagName === 'DT' && e.textContent.trim() === 'Problem'); if (at < 0) return;
+  const more = document.createElement('dl'); more.className = 'intro-facts intro-after';
+  kids.slice(at).forEach(e => more.appendChild(e));
+  intro.appendChild(more);
+  const note = intro.querySelector('.intro-fig .intro-note'); if (note) intro.appendChild(note);
+  intro.classList.add('split');
+  const text = intro.querySelector('.intro-text'), title = intro.querySelector('.intro-title');
+  // the picture is as tall as the title + facts beside it (a few passes, since its width changes the text wrap)
+  const fit = () => {
+    for (let i = 0; i < 4; i++) {
+      const h = dl.getBoundingClientRect().bottom - intro.querySelector('.intro-fig .zoom').getBoundingClientRect().top;
+      intro.style.setProperty('--pic-h', Math.max(160, Math.round(h)) + 'px');
+    }
+  };
+  text.style.justifyContent = 'flex-start';
+  fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit);
+})();
+</script>
 <!--video:1|Film-->
 
 <!-- 20 Screenager_scene -->

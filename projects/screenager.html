@@ -24,7 +24,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../style.css?v=1795774166">
+<link rel="stylesheet" href="../style.css?v=1795774529">
 </head>
 <body class="project">
 
@@ -122,6 +122,40 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
   </figure>
 </section>
 
+<style>
+  /* computer: What/Date/Context/Overview beside the picture (the picture ends where the text ends);
+     Problem/Question/Concept full width underneath, then the closing sentence */
+  @media (min-width: 761px) {
+    [data-project="screenager"] .intro.split { padding-bottom: 0; row-gap: calc(64px * var(--k, 1)); }
+    [data-project="screenager"] .intro.split .intro-text { justify-content: space-between; }
+    [data-project="screenager"] .intro.split .intro-after { grid-column: 1 / -1; }
+    [data-project="screenager"] .intro.split .intro-fig .intro-note { position: static; width: auto; margin: 0; }
+    [data-project="screenager"] .intro.split > .intro-note { grid-column: 1 / -1; justify-self: end; width: calc(564px * var(--k, 1)); margin: 0; font-size: calc(20px * var(--k, 1)); line-height: 1.4; }
+  }
+</style>
+<script>
+(() => {
+  if (!matchMedia('(min-width: 761px)').matches) return;
+  const intro = document.querySelector('[data-project="screenager"] .intro'); if (!intro) return;
+  const dl = intro.querySelector('.intro-facts'), kids = [...dl.children];
+  const at = kids.findIndex(e => e.tagName === 'DT' && e.textContent.trim() === 'Problem'); if (at < 0) return;
+  const more = document.createElement('dl'); more.className = 'intro-facts intro-after';
+  kids.slice(at).forEach(e => more.appendChild(e));
+  intro.appendChild(more);
+  const note = intro.querySelector('.intro-fig .intro-note'); if (note) intro.appendChild(note);
+  intro.classList.add('split');
+  const text = intro.querySelector('.intro-text'), title = intro.querySelector('.intro-title');
+  // the picture is as tall as the title + facts beside it (a few passes, since its width changes the text wrap)
+  const fit = () => {
+    for (let i = 0; i < 4; i++) {
+      const h = dl.getBoundingClientRect().bottom - intro.querySelector('.intro-fig .zoom').getBoundingClientRect().top;
+      intro.style.setProperty('--pic-h', Math.max(160, Math.round(h)) + 'px');
+    }
+  };
+  text.style.justifyContent = 'flex-start';
+  fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit);
+})();
+</script>
   <figure class="video" id="part-2" data-toc="Film"><div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/5wQAfK8D-yY?rel=0" title="screenager video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><figcaption>Screenager (2022).</figcaption></figure>
 
 <!-- 20 Screenager_scene -->
@@ -203,8 +237,8 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
   addEventListener('scroll', barP, { passive: true }); addEventListener('resize', barP); barP();
   if (tocItems.length) { addEventListener('scroll', markToc, { passive: true }); addEventListener('resize', markToc); markToc(); }
 </script>
-<script src="../menu.js?v=1795774166" defer></script>
-<script src="../phone.js?v=1795774166" defer></script>
-<script src="../dividers.js?v=1795774166" defer></script>
+<script src="../menu.js?v=1795774529" defer></script>
+<script src="../phone.js?v=1795774529" defer></script>
+<script src="../dividers.js?v=1795774529" defer></script>
 </body>
 </html>
