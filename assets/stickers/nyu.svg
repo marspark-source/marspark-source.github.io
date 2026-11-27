@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Torch for New York University">
+  <g transform="rotate(4 80.0 60.0)">
+    <rect x="6" y="6" width="148" height="108" rx="22" fill="#fff" stroke="#1a1a1a" stroke-width="1.6"/>
+    <g fill="none" stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M70,104 L76,62 L88,62 L94,104 Z" fill="#c9b8e8"/>
+      <path d="M64,62 L100,62 L96,52 L68,52 Z" fill="#fff"/>
+      <path d="M82,50 C66,40 72,26 80,16 C80,28 90,28 88,18 C100,30 98,44 82,50 Z" fill="#f6d57a"/>
+      <path d="M82,46 C76,40 78,34 82,30 C84,36 88,38 82,46"/>
+      <path d="M78,74 L86,74 M77,86 L87,86"/>
+    </g>
+  </g>
+</svg>

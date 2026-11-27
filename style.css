@@ -1809,3 +1809,33 @@ template.phone-part { display: none; }
 }
 /* About letter: a much gentler wobble than the name */
 .letter .hand-letter.boil { filter: url(#letter-boil); }
+
+/* ---------- About letter: places underlined by hand show a little sticker on hover / focus / tap ---------- */
+.letter-art { position: relative; width: fit-content; max-width: 100%; }
+.letter-art .hand-letter { display: block; }
+.letter .place { position: absolute; z-index: 2; }
+.letter .place-hit { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: help; border-radius: 6px; }
+.letter .place-hit:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.letter .sticker {
+  position: absolute; left: 50%; bottom: 100%; width: clamp(150px, 13vw, 210px); height: auto; margin-bottom: 4px;
+  pointer-events: none; opacity: 0; transform: translate(-50%, 8px) scale(.85) rotate(-6deg);
+  transition: opacity .18s ease, transform .28s cubic-bezier(.3,1.5,.6,1); filter: drop-shadow(0 3px 4px rgba(0,0,0,.16));
+}
+.letter .place:hover .sticker, .letter .place:focus-within .sticker, .letter .place.show .sticker { opacity: 1; transform: translate(-50%, 0) scale(1) rotate(0deg); }
+@media (min-width: 861px) { .about .letter .letter-art { margin-top: -48px; } }
+@media (prefers-reduced-motion: reduce) { .letter .sticker { transition: opacity .1s; transform: translate(-50%, 0); } }
+.letter .place:hover, .letter .place:focus-within, .letter .place.show { z-index: 5; }
+@media (max-width: 860px) { .letter .sticker { width: 140px; } }
+.letter .sticker { max-width: none !important; }
+
+/* ---------- About: a little burst of sparkles when email, LinkedIn or the CV is opened ---------- */
+.spark-burst { position: fixed; width: 0; height: 0; pointer-events: none; z-index: 1000; }
+.spark-burst i {
+  position: absolute; left: 0; top: 0; font-style: normal; font-size: 15px; line-height: 1; transform: translate(-50%, -50%);
+  animation: spark-fly .75s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes spark-fly {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(.4) rotate(0deg); }
+  20%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.1) rotate(var(--r)); }
+}

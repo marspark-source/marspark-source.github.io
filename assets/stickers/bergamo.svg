@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Upper town of Bergamo, Italy">
+  <g transform="rotate(3 80.0 60.0)">
+    <rect x="6" y="6" width="148" height="108" rx="22" fill="#fff" stroke="#1a1a1a" stroke-width="1.6"/>
+    <g fill="none" stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18,100 C40,78 60,70 80,68 C100,70 122,78 142,100" fill="#cfe3c4"/>
+      <path d="M40,84 L40,74 L120,74 L120,84"/>
+      <path d="M44,74 l0,-3 l5,0 l0,3 M58,74 l0,-3 l5,0 l0,3 M100,74 l0,-3 l5,0 l0,3 M112,74 l0,-3 l5,0 l0,3"/>
+      <path d="M58,74 L58,44 L72,44 L72,74 M58,44 L65,32 L72,44" fill="#f2d3b0"/>
+      <path d="M63,52 l4,0 l0,8 l-4,0 Z"/>
+      <path d="M82,74 L82,58 C82,46 104,46 104,58 L104,74" fill="#f2d3b0"/>
+      <path d="M93,48 L93,40"/>
+      <path d="M86,64 l0,6 M100,64 l0,6"/>
+    </g>
+  </g>
+</svg>

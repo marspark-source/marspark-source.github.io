@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Golden Gate Bridge for the Bay Area">
+  <g transform="rotate(-4 80.0 60.0)">
+    <rect x="6" y="6" width="148" height="108" rx="22" fill="#fff" stroke="#1a1a1a" stroke-width="1.6"/>
+    <g fill="none" stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14,78 L146,78"/>
+      <path d="M46,96 L46,30 M58,96 L58,30 M46,30 L58,30 M46,46 L58,46 M46,62 L58,62" stroke="#c4472d"/>
+      <path d="M102,96 L102,30 M114,96 L114,30 M102,30 L114,30 M102,46 L114,46 M102,62 L114,62" stroke="#c4472d"/>
+      <path d="M14,52 C30,70 40,74 52,32 C66,76 94,76 108,32 C120,74 130,70 146,52" stroke="#c4472d"/>
+      <path d="M66,52 L66,78 M76,62 L76,78 M86,64 L86,78 M96,58 L96,78 M28,64 L28,78 M36,70 L36,78 M126,64 L126,78 M134,60 L134,78" stroke-width="1.4"/>
+      <path d="M20,98 C30,94 38,102 48,98 M70,100 C80,96 88,104 98,100 M118,98 C126,94 134,102 142,98" stroke-width="1.8"/>
+    </g>
+  </g>
+</svg>

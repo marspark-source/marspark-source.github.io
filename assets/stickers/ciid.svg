@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="CIID written by hand">
+  <g transform="rotate(-3 80.0 60.0)">
+    <rect x="6" y="6" width="148" height="108" rx="22" fill="#fff" stroke="#1a1a1a" stroke-width="1.6"/>
+    <g fill="none" stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(56.0 26) scale(0.62)" stroke-width="3.6"><path d="M23.48,59 C18.2,50 2.88,54 1.44,72 C0,90 15,90 22.48,84 M31.68,52 L28.48,92 M32.96,36 C33.41,35.4 33.82,35.2 34.24,35 M42.44,52 L39.24,92 M43.72,36 C44.17,35.4 44.58,35.2 45,35 M72.4,58 C67.04,50 52.72,54 51.28,72 C50,88 62.84,90 69.72,79 M77.56,6 L70.68,92"/></g>
+      <path d="M122,30 L122,44 M115,37 L129,37 M117,32 L127,42 M127,32 L117,42" stroke-width="2"/>
+    </g>
+  </g>
+</svg>
