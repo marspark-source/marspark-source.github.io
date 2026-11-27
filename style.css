@@ -2066,3 +2066,5 @@ template.phone-part { display: none; }
 }
 /* item names: a thin white edge only, so it no longer covers the items */
 .doll .piece-label .hand path.halo { stroke-width: 2.2 !important; }
+/* the connecting lines may run past the old map area (the map now sits on the right) */
+.board .links { overflow: visible; }
