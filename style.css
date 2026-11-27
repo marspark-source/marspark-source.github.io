@@ -2114,11 +2114,11 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
   .cv-dialog .cv.cv-2col .cv-col .when small { display: block; }
   /* dates and places the same size */
   .cv-dialog .cv.cv-2col .cv-col .when small { font-size: 1em; }
-  /* smaller text sits a little high in an 18px line; nudge it down so every size shares the 14.5px titles' baseline */
-  .cv-dialog .cv.cv-2col .cv-col :is(dt, dd, li, .what p) { position: relative; top: calc((14.5px - 1em) * 0.35); }
-  .cv-dialog .cv.cv-2col .cv-col-fill > section:first-child h3 { position: relative; top: calc((14.5px - 12.5px) * 0.35); }
+  /* smaller text sits a little high in an 18px line; nudge it down so every size shares the 12.5px body text's baseline */
+  .cv-dialog .cv.cv-2col .cv-col :is(dt, dd, li, .what p) { position: relative; top: calc((12.5px - 1em) * 0.35); }
+  .cv-dialog .cv.cv-2col .cv-col-fill > section:first-child h3 { position: relative; top: calc((12.5px - 12.5px) * 0.35); }
   /* everything that isn't a title is one size: contact info, dates, places, descriptions, bullets, right column */
-  .cv-dialog .cv.cv-2col .cv-col :is(.kv, .small-kv, .when, .when small, .what p, .what ul) { font-size: 12.5px; }
+  .cv-dialog .cv.cv-2col .cv-col :is(.kv, .small-kv, .when, .when small, .what, .what p, .what ul) { font-size: 12.5px; }   /* school and job names too */
   .cv-dialog .cv.cv-2col .cv-col:not(.cv-col-fill) :is(.kv, .entry) { grid-template-columns: 92px 1fr; column-gap: 10px; }   /* left column: room for the widest date */
   /* Exhibitions heading: same size as Email and on Email's line, so it fits beside the contact info */
   .cv-dialog .cv.cv-2col .cv-col-fill > section:first-child h3 { font-size: 12.5px; font-weight: 600; line-height: 18px !important; }
