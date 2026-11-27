@@ -2055,7 +2055,7 @@ template.phone-part { display: none; }
 /* ---------- HOME (desktop): sides switched: name card top-left, key bottom-left, a slightly smaller map on the right ---------- */
 .board.swapped .namecard { left: 0; top: 0; translate: none; transform-origin: 0 0; }
 .board.swapped .legend { left: 0; top: auto; bottom: 0; translate: none; transform-origin: 0 100%; }
-.board.swapped .legend h2 { margin-top: 0; translate: 22.5px 14px; }   /* banner a little lower, and its words start where the row labels start */
+.board.swapped .legend h2 { margin-top: 0; translate: 0 14px; }   /* banner sits a little lower, closer to the rows */
 /* phones: every place's badge sits as a small pin right at the end of its name, always visible */
 @media (max-width: 860px) {
   .about .letter .letter-hand-wrap.for-phone .place .sticker {
@@ -2096,13 +2096,3 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
 @media (max-width: 860px) { .about .letter .letter-hand-wrap.for-phone { margin-left: auto; margin-right: auto; } }
 /* home: Screenager's title lines up with its tagline (the hover arrow no longer takes up room) */
 .board .proj[data-id="screenager"] .label .arrow { position: absolute; left: 100%; margin-left: .3em; top: 0; }
-/* CV: Email / LinkedIn / Located in one row across the top, so Education and Exhibitions start level */
-.cv-dialog .cv.cv-2col > .cv-contact { grid-column: 1 / -1; margin-bottom: 4px; }
-.cv-dialog .cv-contact .kv { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 0; font-size: 13.5px; }
-.cv-dialog .cv-contact .kv dt { margin-right: 7px; }
-.cv-dialog .cv-contact .kv dd { margin: 0 20px 0 0; white-space: nowrap; }
-.cv-dialog .cv-contact .kv dd:last-child { margin-right: 0; }
-@media (max-width: 640px) {   /* phones: contact back to a stacked list */
-  .cv-dialog .cv-contact .kv { display: grid; font-size: 14.5px; grid-template-columns: 84px 1fr; gap: 6px 12px; }
-  .cv-dialog .cv-contact .kv dt, .cv-dialog .cv-contact .kv dd { margin: 0; white-space: normal; }
-}
