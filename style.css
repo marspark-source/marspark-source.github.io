@@ -2090,3 +2090,5 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
 @keyframes draw-stroke { from { stroke-dashoffset: 1; opacity: 1; } to { stroke-dashoffset: 0; opacity: 1; } }
 .name-svg path, .tc-name path, .tc-kicker-hand path { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .name-svg path, .tc-name path, .tc-kicker-hand path { opacity: 1; } }
+.board .proj .thumb img.thumb-whole, .home-mobile .grid img.thumb-whole { object-fit: contain !important; background: #fff; padding: 5%; box-sizing: border-box; }
+.board .proj .thumb img.thumb-whole, .home-mobile .grid img.thumb-whole { border: 1px solid #111; }
