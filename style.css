@@ -2020,9 +2020,9 @@ template.phone-part { display: none; }
   .about { padding-left: 0 !important; padding-right: 0 !important; }
   .about-intro { justify-content: space-evenly !important; column-gap: 0 !important; }
 }
-/* the CV sheet scales to fit the window (no scrolling) */
+/* the CV sheet scales down a little to fit the window; if it still doesn't fit (small laptops, phones) it scrolls (set in about.html) */
 .cv-dialog.cv-fitting > * { zoom: var(--cv-z, 1); }
-.cv-dialog { overflow: hidden !important; }
+.cv-dialog { overflow: hidden; }
 /* a single pen line for the floor under the mannequin and the item box (right side only) */
 .doll .doll-floor { position: absolute; left: -2%; right: -2%; width: 104%; top: calc(100% * 600 / 602); height: 6px; overflow: visible; pointer-events: none; z-index: 0; filter: url(#line-boil); }
 .doll .doll-floor path { fill: none; stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linecap: round; }
@@ -2123,4 +2123,37 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
   .cv-dialog .cv.cv-2col .cv-col:not(.cv-col-fill) :is(.kv, .entry) { grid-template-columns: 92px 1fr; column-gap: 10px; }   /* left column: room for the widest date */
   /* Exhibitions heading: same size as Email and on Email's line, so it fits beside the contact info */
   .cv-dialog .cv.cv-2col .cv-col-fill > section:first-child h3 { font-size: 12.5px; font-weight: 600; line-height: 18px !important; }
+}
+
+/* ---------- CV pop-up laid out like the PDF CV (cv/Ella_Grace_Park_CV.pdf): one column, small capital headings with a rule ---------- */
+.cv-dialog.cvp { width: min(880px, calc(100vw - 32px)); padding: 30px 48px 32px; color: var(--ink); font-size: 13.5px; line-height: 1.38; }
+.cvp .cv-dialog-head { border-bottom: 0; padding-bottom: 0; margin-bottom: 6px; align-items: center; }
+.cvp .cv-dialog-head h2 { font-size: clamp(28px, 3.4vw, 38px); font-weight: 600; letter-spacing: -.02em; }
+.cvp-sub { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; color: #6b6b6b; }
+.cvp-role { margin: 0; font-size: 15px; }
+.cvp-contact { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; list-style: none; font-size: 12.5px; }
+.cvp-contact a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.cvp-contact a:hover, .cvp-contact a:focus-visible { border-color: currentColor; }
+.cvp-sec { margin-top: 20px; }
+.cvp-sec h3 { margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid #cfcfcf; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.cvp-row, .cvp-list { display: grid; grid-template-columns: 200px 1fr; column-gap: 16px; }
+.cvp-row + .cvp-row { margin-top: 11px; }
+.cvp-when, .cvp-title { margin: 0; }
+.cvp-when span { display: block; color: #8a8a8a; }
+.cvp-title { font-weight: 600; }
+.cvp-title span, .cvp-list dd span { color: #7a7a7a; }
+.cvp-title span { font-weight: 600; }
+.cvp-what ul { margin: 3px 0 0; padding: 0; list-style: none; }
+.cvp-what li { position: relative; padding-left: 15px; }
+.cvp-what li::before { content: "•"; position: absolute; left: 2px; color: #9a9a9a; font-size: .8em; line-height: 1.8; }
+.cvp-list { row-gap: 3px; margin: 0; }
+.cvp-list dt, .cvp-list dd { margin: 0; }
+.cvp-list dd b { font-weight: 600; }
+@media (max-width: 640px) {
+  .cv-dialog.cvp { padding: 26px 22px 30px; }
+  .cvp-row, .cvp-list { grid-template-columns: 1fr; }
+  .cvp-when span { display: inline; margin-left: 8px; }
+  .cvp-what { margin-top: 2px; }
+  .cvp-list dt { margin-top: 8px; color: #6b6b6b; }
+  .cvp-list dt:first-child { margin-top: 0; }
 }
