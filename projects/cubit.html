@@ -224,7 +224,7 @@ matchMedia('(orientation: landscape)').addEventListener('change',()=>{const n=pi
 <script>
   const lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
   document.querySelectorAll('.slide, .zoom').forEach(b => b.addEventListener('click', () => {
-    const i = b.querySelector('img'); lbImg.src = b.dataset.full || i.src; lbImg.alt = i.alt; lb.classList.add('open');   // data-full: a bigger picture to show when enlarged
+    const i = b.querySelector('img'); lbImg.src = b.dataset.full || i.src; lbImg.alt = i.alt; lbImg.style.maxWidth = b.dataset.full ? 'min(100%, 1600px)' : ''; lb.classList.add('open');   // data-full: a bigger picture to show when enlarged
   }));
   lb.addEventListener('click', () => lb.classList.remove('open'));
   addEventListener('keydown', e => e.key === 'Escape' && lb.classList.remove('open'));
