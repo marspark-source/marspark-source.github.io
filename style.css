@@ -2154,6 +2154,11 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
 .cvs-ex b { color: var(--ink); font-weight: 600; }
 .cvs-kv { display: grid; grid-template-columns: 80px 1fr; row-gap: 0; }
 .cvs-kv dt { font-weight: 600; }
+/* section headings are buttons (only active on phones, where sections open and close) */
+.cvs-toggle { all: unset; display: block; cursor: default; }
+.cvs-chev { display: none; }
+.cvs-body { display: grid; grid-template-rows: 1fr; }
+.cvs-in { min-height: 0; }
 /* phones: a mobile-friendly version instead of a tiny page: one column, normal text, scrolls inside the pop-up */
 @media (max-width: 640px) {
   .cv-dialog.cvs { width: calc(100vw - 24px); height: auto; max-height: calc(100svh - 24px); overflow: auto; overscroll-behavior: contain; }
@@ -2169,4 +2174,16 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
   .cvs-ex li > span:last-child { color: #9a9a9a; }
   .cvs-kv { grid-template-columns: 78px 1fr; row-gap: 6px; }
   .cvs-kv br { display: none; }   /* let the lines wrap to the phone's width */
+  /* sections open and close: tap a heading */
+  .cv-dialog.cvs-fold .cvs-sec h3 { margin-bottom: 0; padding-bottom: 0; }
+  .cv-dialog.cvs-fold .cvs-sec, .cv-dialog.cvs-fold .cvs-sec + .cvs-sec { margin-top: 18px; }
+  .cv-dialog.cvs-fold .cvs-toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; padding: 10px 0 12px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .cv-dialog.cvs-fold .cvs-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .cv-dialog.cvs-fold .cvs-chev { display: block; width: 9px; height: 9px; margin-right: 4px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-3px) rotate(45deg); transition: transform .3s var(--ease); }
+  .cv-dialog.cvs-fold .cvs-sec.open .cvs-chev { transform: translateY(2px) rotate(-135deg); }
+  .cv-dialog.cvs-fold .cvs-body { grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease); }
+  .cv-dialog.cvs-fold .cvs-sec.open .cvs-body { grid-template-rows: 1fr; }
+  .cv-dialog.cvs-fold .cvs-in { overflow: hidden; }
+  .cv-dialog.cvs-fold .cvs-in > :first-child { margin-top: 14px; }
+  @media (prefers-reduced-motion: reduce) { .cv-dialog.cvs-fold .cvs-body, .cv-dialog.cvs-fold .cvs-chev { transition: none; } }
 }
