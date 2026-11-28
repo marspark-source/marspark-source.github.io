@@ -2125,35 +2125,48 @@ html.laid-out .about-intro { opacity: 1; transition: opacity .25s ease; }
   .cv-dialog .cv.cv-2col .cv-col-fill > section:first-child h3 { font-size: 12.5px; font-weight: 600; line-height: 18px !important; }
 }
 
-/* ---------- CV pop-up laid out like the PDF CV (cv/Ella_Grace_Park_CV.pdf): one column, small capital headings with a rule ---------- */
-.cv-dialog.cvp { width: min(880px, calc(100vw - 32px)); padding: 30px 48px 32px; color: var(--ink); font-size: 13.5px; line-height: 1.38; }
-.cvp .cv-dialog-head { border-bottom: 0; padding-bottom: 0; margin-bottom: 6px; align-items: center; }
-.cvp .cv-dialog-head h2 { font-size: clamp(28px, 3.4vw, 38px); font-weight: 600; letter-spacing: -.02em; }
-.cvp-sub { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; color: #6b6b6b; }
-.cvp-role { margin: 0; font-size: 15px; }
-.cvp-contact { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; list-style: none; font-size: 12.5px; }
-.cvp-contact a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
-.cvp-contact a:hover, .cvp-contact a:focus-visible { border-color: currentColor; }
-.cvp-sec { margin-top: 20px; }
-.cvp-sec h3 { margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid #cfcfcf; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-.cvp-row, .cvp-list { display: grid; grid-template-columns: 200px 1fr; column-gap: 16px; }
-.cvp-row + .cvp-row { margin-top: 11px; }
-.cvp-when, .cvp-title { margin: 0; }
-.cvp-when span { display: block; color: #8a8a8a; }
-.cvp-title { font-weight: 600; }
-.cvp-title span, .cvp-list dd span { color: #7a7a7a; }
-.cvp-title span { font-weight: 600; }
-.cvp-what ul { margin: 3px 0 0; padding: 0; list-style: none; }
-.cvp-what li { position: relative; padding-left: 15px; }
-.cvp-what li::before { content: "•"; position: absolute; left: 2px; color: #9a9a9a; font-size: .8em; line-height: 1.8; }
-.cvp-list { row-gap: 3px; margin: 0; }
-.cvp-list dt, .cvp-list dd { margin: 0; }
-.cvp-list dd b { font-weight: 600; }
+/* ---------- CV pop-up = the PDF CV (aboutme/finalstuff/cv/2026_Ella_Grace_Park_CV.pdf): one fixed two-column page,
+   scaled down as a whole by about.html so it always fits the window and never scrolls ---------- */
+.cv-dialog.cvs { width: fit-content; height: fit-content; max-width: none; max-height: none; margin: auto; padding: 0; overflow: hidden; border: 0; background: transparent; }
+.cvs-sheet { position: relative; width: 880px; box-sizing: border-box; padding: 52px 48px 56px; background: #fff; color: var(--ink);
+  font-size: 14px; line-height: 23px; border: 1px solid var(--ink); }
+.cvs-sheet p, .cvs-sheet ul, .cvs-sheet dl, .cvs-sheet dd { margin: 0; padding: 0; }
+.cvs-sheet a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.cvs-sheet a:hover, .cvs-sheet a:focus-visible { border-color: currentColor; }
+.cvs-sheet .cv-close { position: absolute; top: 18px; right: 18px; }
+.cvs-name { margin: 0 0 14px; font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -.025em; }
+.cvs-cols { display: grid; grid-template-columns: 426px 318px; column-gap: 40px; }
+.cvs-sub { color: #6b6b6b; }
+.cvs-sub b { color: var(--ink); font-weight: 600; }
+.cvs-sec { margin-top: 30px; }
+.cvs-sec + .cvs-sec { margin-top: 44px; }
+.cvs-sec h3 { margin: 0 0 14px; padding-bottom: 12px; border-bottom: 1px solid #c9c9c9; font-size: 12px; line-height: 1; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.cvs-item + .cvs-item { margin-top: 22px; }
+.cvs-t { font-weight: 600; }
+.cvs-t span { font-weight: 400; color: #6b6b6b; }
+.cvs-d { color: #6b6b6b; }
+.cvs-d span { color: #9a9a9a; }
+.cvs-item ul { list-style: none; }
+.cvs-item li { position: relative; padding-left: 14px; }
+.cvs-item li::before { content: "•"; position: absolute; left: 1px; color: #a5a5a5; font-size: .75em; }
+.cvs-ex { list-style: none; color: #6b6b6b; }
+.cvs-ex li { display: flex; justify-content: space-between; gap: 16px; }
+.cvs-ex b { color: var(--ink); font-weight: 600; }
+.cvs-kv { display: grid; grid-template-columns: 80px 1fr; row-gap: 0; }
+.cvs-kv dt { font-weight: 600; }
+/* phones: a mobile-friendly version instead of a tiny page: one column, normal text, scrolls inside the pop-up */
 @media (max-width: 640px) {
-  .cv-dialog.cvp { padding: 26px 22px 30px; }
-  .cvp-row, .cvp-list { grid-template-columns: 1fr; }
-  .cvp-when span { display: inline; margin-left: 8px; }
-  .cvp-what { margin-top: 2px; }
-  .cvp-list dt { margin-top: 8px; color: #6b6b6b; }
-  .cvp-list dt:first-child { margin-top: 0; }
+  .cv-dialog.cvs { width: calc(100vw - 24px); height: auto; max-height: calc(100svh - 24px); overflow: auto; overscroll-behavior: contain; }
+  .cvs-sheet { width: auto; padding: 26px 20px 30px; font-size: 14px; line-height: 21px; }
+  .cvs-sheet .cv-close { top: 12px; right: 12px; }
+  .cvs-name { font-size: 30px; margin-bottom: 10px; padding-right: 44px; }
+  .cvs-cols { grid-template-columns: 1fr; }
+  .cvs-sub p + p { margin-top: 4px; }
+  .cvs-sec, .cvs-sec + .cvs-sec { margin-top: 26px; }
+  .cvs-item + .cvs-item { margin-top: 16px; }
+  .cvs-ex li { flex-direction: column; gap: 0; }
+  .cvs-ex li + li { margin-top: 6px; }
+  .cvs-ex li > span:last-child { color: #9a9a9a; }
+  .cvs-kv { grid-template-columns: 78px 1fr; row-gap: 6px; }
+  .cvs-kv br { display: none; }   /* let the lines wrap to the phone's width */
 }
